@@ -10,8 +10,8 @@ public class Task_4 {
 
         System.out.println("a = " + a);
         System.out.println("b = " + b);
-        for (int i = 0; i < b; i++) {
-            c=c+a;
+        for (int i = 0; i < a; i++) {
+            c=c+b;
         }
         System.out.println("Multiplication: "+c);
     }
