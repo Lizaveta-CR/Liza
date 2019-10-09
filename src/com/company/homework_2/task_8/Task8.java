@@ -1,6 +1,6 @@
 package com.company.homework_2.task_8;
 
-public class Task_8 {
+public class Task8 {
     public static void main(String[] args) {
        int sumOdd=0;
        int sumEven=0;

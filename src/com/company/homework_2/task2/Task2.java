@@ -1,6 +1,6 @@
 package com.company.homework_2.task2;
 
-public class Task_2 {
+public class Task2 {
     public static void main(String[] args) {
         int a=1;
         int iterationNumber=24;

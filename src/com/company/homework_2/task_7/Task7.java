@@ -1,6 +1,6 @@
 package com.company.homework_2.task_7;
 
-public class Task_7 {
+public class Task7 {
     public static void main(String[] args) {
         int sum,iterationNumber;
         sum=0;
