@@ -5,9 +5,9 @@ public class Task_5 {
         double sm,dm;
         int counter=0;
 
-        for (dm = 1; dm <21 ; dm++) {
-            sm=dm/2.54;
-            System.out.println(dm+" Dyims corresponds "+sm+" Santimetres");
+        for (dm =1; dm <21; dm++) {
+            sm=dm*2.54;
+            System.out.println(dm+" inch corresponds "+sm+" centimeters");
             counter++;
         }
 
