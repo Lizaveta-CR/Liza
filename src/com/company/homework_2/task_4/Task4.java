@@ -5,15 +5,15 @@ public class Task4 {
         String firstArgument = args[0];//a
 
         // a, b - так себе названия для переменных, придумай другие
-        int a = Integer.valueOf(firstArgument);//to make my own values
-        int b = Integer.valueOf(args[1]);
-        int c=0;//counter of multiplication - придумай хорошее ("говорящее") название переменной и комментарий не понадобится
+        int firstArg = Integer.valueOf(firstArgument);//to make my own values
+        int secondArg = Integer.valueOf(args[1]);
+        int res=0;// придумай хорошее ("говорящее") название переменной и комментарий не понадобится
 
-        System.out.println("a = " + a);
-        System.out.println("b = " + b);
-        for (int i = 0; i < a; i++) {
-            c=c+b;
+        System.out.println("a = " + firstArg);
+        System.out.println("b = " + secondArg);
+        for (int i = 0; i < firstArg; i++) {
+            res=res+secondArg;
         }
-        System.out.println("Multiplication: "+c);
+        System.out.println("Multiplication: "+res);
     }
 }

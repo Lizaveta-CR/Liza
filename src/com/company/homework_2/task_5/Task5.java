@@ -7,7 +7,7 @@ public class Task5 {
         int counter=0;
 
         // 21 - в переменную
-        for (dm =1; dm <21; dm++) {
+        for (dm =1; dm <=20; dm++) {
             sm=dm*2.54; // 2.54 - в переменную
             System.out.println(dm+" inch corresponds "+sm+" centimeters");
             counter++;
