@@ -12,8 +12,8 @@ public class Task8 {
            } else{
                sumOdd+=i;
            }
-           sum+=i;
-
+           sum+=i; // можно посчитать 1 раз после цикла сложив четные и нечетные
+// пустая строка не нужна
         }
         System.out.println("The amount of even numbers: "+sumEven);
         System.out.println("The amount of odd numbers: "+sumOdd);
