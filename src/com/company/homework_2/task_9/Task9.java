@@ -6,7 +6,7 @@ public class Task9 {
         int rows=4;
         System.out.println("Original first: ");
         for (int i = 0; i <=rows; i++) {
-            for (int j = 0; j < rows-i; j++) {
+           for (int j = 0; j < rows-i; j++) {
                 //this cycle shows how many stars we want on each step
                 System.out.print("  ");//to make inverse we put spaces
             }
