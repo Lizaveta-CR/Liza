@@ -2,6 +2,7 @@ package com.company.homework_3.task_7;
 
 import java.util.Arrays;
 
+// +
 public class Task_7 {
     public static void main(String[] args) {
         int size = 10;
