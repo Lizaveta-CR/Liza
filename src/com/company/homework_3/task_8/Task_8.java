@@ -21,4 +21,6 @@ public class Task_8 {
             System.out.println();
         }
     }//для симметричности я никак не могу придумать
+    
+    // посмотри эту таску у Mary Stankevich (твоя коллега)
 }
