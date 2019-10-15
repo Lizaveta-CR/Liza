@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
+// форматируй код
 public class Task_3 {
     public static void main(String[] args) {
         int size;
