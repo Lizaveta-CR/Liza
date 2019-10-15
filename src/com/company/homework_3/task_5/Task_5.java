@@ -16,6 +16,7 @@ public class Task_5 {
         }
         System.out.println(Arrays.toString(array));
 
+        // для этой задачи можно бежать только до середины массива, меняя первый и последний, второй и предпоследний и т.д.
         for (int i = 0; i < array.length; i++) {
             array[i] = array.length - 1 - i;
         }
