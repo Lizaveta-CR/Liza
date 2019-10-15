@@ -20,7 +20,7 @@ public class Task_6 {
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 == 0) {
                 arrayEvenAndZeros[i] = array[i];
-                counter += 1;
+                counter += 1; // counter++;
             }
         }
         System.out.println("\nArray with even numbers and zeros: ");
@@ -37,6 +37,8 @@ public class Task_6 {
         System.out.println("\nFinal result: ");
         System.out.println(Arrays.toString(arrayEven));/*иногда в результате проскакивает 0 на последнем
         месте(добавляется +1 элемент,те увеличивается размерность),но я не смогла понять причину*/
+        
+        // ты уже знаешь что делать
     }
 }
 
