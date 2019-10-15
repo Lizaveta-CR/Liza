@@ -19,6 +19,8 @@ public class Task_1 {
         System.out.println("Your array: ");
         System.out.println(Arrays.toString(array));
 
+        // параллельно с вычислением суммы ты можешь искать мин и макс. Тогда найдешь все за 1 проход по массиву
+        // пока решение не оптимально
         for (int i = 0; i < array.length; i++) {
             sum += array[i];
         }
