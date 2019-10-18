@@ -2,6 +2,7 @@ package com.company.homework_4.task_3;
 
 import com.company.homework_4.task_1.Person;
 
+// +
 public class FindSameObjectsArray {
     public static void main(String[] args) {
         int count = 0;
