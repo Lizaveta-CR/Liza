@@ -2,8 +2,11 @@ package com.company.homework_4.task_1;
 
 public class PersonMain {
     public static void main(String[] args) {
+        // person_1 -> kate
         Person person_1 = new Person("Kate", 18);
+        // oleg
         Person person_2 = new Person("Oleg", 22);
+       // unknown
         Person person_3 = new Person();
 
         person_1.show();
