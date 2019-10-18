@@ -26,7 +26,7 @@ public class Person {
 
     public void show() {
         System.out.println("Name: " + name + "\nAge: " + age);
-        System.out.println();
+        System.out.println(); // думаю эта строка не нужна
     }
 
     @Override
