@@ -1,5 +1,6 @@
 package com.company.homework_5.task_3;
 
+// +
 public class CityHouse implements House {
     private int floors;
     private int tenants;
