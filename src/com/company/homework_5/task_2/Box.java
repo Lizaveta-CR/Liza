@@ -1,5 +1,6 @@
 package com.company.homework_5.task_2;
 
+// +
 public class Box {
     private int numOfFeltTips;
     private double weight;
