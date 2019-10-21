@@ -3,6 +3,7 @@ package com.company.homework_5.task_3;
 import java.util.Arrays;
 
 public class HouseCatalog {
+    // оба эти массив должны быть одним House[]
     private final CityHouse[] cityHouses;
     private final VacationHome[] vacationHomes;
 
