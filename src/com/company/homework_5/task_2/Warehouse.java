@@ -13,8 +13,9 @@ public class Warehouse {
     public Box next() {
         Box temp = null;
         if (boxes.length != 0) {
-                temp = boxes[index + 1];
+                temp = boxes[index + 1]; // у тебя первый вызов метода next() вернет элемент с индексом 1, а должен с 0
                 index++;
+            // очень опасный if, подумай что будет если в массиве будут 2 одинаковых элемента
                 if (temp == boxes[boxes.length - 1]) {
                     temp = boxes[0];
                 }
