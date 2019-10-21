@@ -1,9 +1,9 @@
 package com.company.homework_5.task_1;
 
 public interface Computer {
-    void turnOff();
+    void turnOff(); // я бы предложил сделать этот метод не void, а boolean, чтобы знать отработала кнопка или нет
 
-    void turnOn();
+    void turnOn(); // я бы предложил сделать этот метод не void, а boolean, чтобы знать отработала кнопка или нет
 
-    void reset();
+    void reset(); // здесь 'void' ok
 }
