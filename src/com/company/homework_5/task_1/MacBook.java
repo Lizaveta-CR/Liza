@@ -1,5 +1,6 @@
 package com.company.homework_5.task_1;
 
+// +
 public class MacBook implements Computer {
 
     public void turnOff() {
