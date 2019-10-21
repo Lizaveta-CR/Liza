@@ -12,6 +12,6 @@ public class ComputerMain {
         newMacbook.turnOn();
         newMacbook.turnOff();
         newMacbook.reset();
-
+// пустая строка не нужна
     }
 }
