@@ -12,6 +12,7 @@ public class MainWarehouse {
 
         });
 
+        // для точной проверки цикл должен быть больше, чем array.length, т.к. метод next() ходит по кругу
         for (int i = 0; i < warehouse.getArray().length; i++) {
             System.out.println(warehouse.getArray()[i] + " Next element: " + warehouse.next());
             //не понимаю,как исправить возникающую ошибку: A->B,B->C,C->D,но D->A,игнорируя E
