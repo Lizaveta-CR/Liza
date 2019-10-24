@@ -21,7 +21,9 @@ public class VacationHome implements House {
     }
 
     @Override
-    public void show() {
-        System.out.println("Number of floors: " + floors + ", Number of tenants: " + tenants);
+    public String toString() {
+        return "VacationHome: " +
+                "floors= " + floors +
+                " tenants= " + tenants;
     }
 }

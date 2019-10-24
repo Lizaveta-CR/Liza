@@ -21,7 +21,9 @@ public class CityHouse implements House {
     }
 
     @Override
-    public void show() {
-        System.out.println("Number of floors: " + floors + ", Number of tenants: " + tenants);
+    public String toString() {
+        return "City House: " +
+                "floors= " + floors +
+                " tenants= " + tenants;
     }
 }

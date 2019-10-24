@@ -11,12 +11,10 @@ public class MainWarehouse {
                 new Box(70, 9.77, "E-29")
 
         });
-
+        System.out.println(warehouse);
         // для точной проверки цикл должен быть больше, чем array.length, т.к. метод next() ходит по кругу
-        for (int i = 0; i < warehouse.getArray().length; i++) {
-            System.out.println(warehouse.getArray()[i] + " Next element: " + warehouse.next());
-            //не понимаю,как исправить возникающую ошибку: A->B,B->C,C->D,но D->A,игнорируя E
-            //если добавить while(index<boxes.length-1),то все,кроме 1й,-null
+        for (int i = 0; i < warehouse.getArray().length * 2; i++) {
+            System.out.println(" Next element: " + warehouse.next());
         }
     }
 }
