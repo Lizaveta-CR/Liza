@@ -1,5 +1,6 @@
 package com.company.homework_6.task_2;
 
+// в целом гуд
 public class CarMain {
     public static void main(String[] args) {
         Car car = new Car("7273");
