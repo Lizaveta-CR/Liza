@@ -17,6 +17,7 @@ public class RecursionMain {
 
     private static void printArray(int[] array, int index) {
         if (index < array.length) {
+            // +array - '+' в начале не нужен
             System.out.print(+array[index] + " ");
             index++;
             printArray(array, index);
