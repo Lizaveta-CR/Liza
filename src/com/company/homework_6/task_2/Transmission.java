@@ -1,5 +1,6 @@
 package com.company.homework_6.task_2;
 
+// у тебя в классе Transmission лежит функционал класса Engine
 public class Transmission {
     private boolean start = false;
 
