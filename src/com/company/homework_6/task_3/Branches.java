@@ -1,5 +1,6 @@
 package com.company.homework_6.task_3;
 
+// бранчи должны быть на дереве, а на бранчах фрукты, хотябы так, можно больше вложенность сделать
 public class Branches {
     private int branches;
 
