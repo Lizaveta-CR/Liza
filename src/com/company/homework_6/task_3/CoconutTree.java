@@ -1,6 +1,7 @@
 package com.company.homework_6.task_3;
 
 public class CoconutTree {
+    // думаю здесь должен быть массив чего-нибудь, например, веток
     private int coconuts;
 
     public CoconutTree(int coconuts) {
