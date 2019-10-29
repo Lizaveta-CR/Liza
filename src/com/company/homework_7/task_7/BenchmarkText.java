@@ -8,13 +8,12 @@ public class BenchmarkText {
         StringBuffer stringBuffer = new StringBuffer("is being tested");
         StringBuilder stringBuilder = new StringBuilder("is being tested");
 
-        testStrings(string);
-        testStrings(stringBuffer);
-        testStrings(stringBuilder);
+        testStrings(string,10000);
+        testStrings(stringBuffer,10000);
+        testStrings(stringBuilder,10000);
     }
 
-    public static void testStrings(String strings) {
-        int iterationNumber = 100000; // это выглядит как кандидат на аргумент метода
+    public static void testStrings(String strings,int iterationNumber ) {
         long start = System.currentTimeMillis();
         for (int i = 0; i < iterationNumber; i++) {
             strings = strings + "S";
@@ -26,13 +25,12 @@ public class BenchmarkText {
 
     // testStrings(Appendable stringsToTests) -> Appendable вот за это молодец, 
     // stringsToTests - toTest, strings это строки, может сбивать с толку
-    public static void testStrings(Appendable stringsToTests) throws IOException {
-        int iterationNumber = 100000; // это выглядит как кандидат на аргумент метода
+    public static void testStrings(Appendable ToTests,int iterationNumber) throws IOException {
         long start = System.currentTimeMillis();
         for (int i = 0; i < iterationNumber; i++) {
-            stringsToTests.append("S");
+            ToTests.append("S");
         }
         long finish = System.currentTimeMillis();
-        System.out.println(stringsToTests.getClass().getSimpleName() + "--" + (finish - start));
+        System.out.println(ToTests.getClass().getSimpleName() + "--" + (finish - start));
     }
 }
