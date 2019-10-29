@@ -6,6 +6,6 @@ public class WordsGame {
         String engineer = engineering.substring(0, 7);
         String ring = engineering.substring(7);
         System.out.println(engineer + " " + ring);
-
+// пустая строка не нужна
     }
 }
