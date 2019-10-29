@@ -26,3 +26,11 @@ public class FindWords {
         }
     }
 }
+/*
+No such word as 'alert'
+Word 'add' repeates 1 time(s)
+Word 'good' repeates 2 time(s)
+Word 'plan' repeates 3 time(s)
+Это вывод твоей программы, но она работает некорректно, т.к. слова 'good', 'plan', 'add' встречаются по одному разу
+я думаю здесь нужен while цикл внутри первого for и искать по тексту пока не вернет индекс -1
+*/
