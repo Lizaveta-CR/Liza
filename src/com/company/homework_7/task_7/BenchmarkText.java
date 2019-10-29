@@ -14,7 +14,7 @@ public class BenchmarkText {
     }
 
     public static void testStrings(String strings) {
-        int iterationNumber = 100000;
+        int iterationNumber = 100000; // это выглядит как кандидат на аргумент метода
         long start = System.currentTimeMillis();
         for (int i = 0; i < iterationNumber; i++) {
             strings = strings + "S";
@@ -24,8 +24,10 @@ public class BenchmarkText {
 
     }
 
+    // testStrings(Appendable stringsToTests) -> Appendable вот за это молодец, 
+    // stringsToTests - toTest, strings это строки, может сбивать с толку
     public static void testStrings(Appendable stringsToTests) throws IOException {
-        int iterationNumber = 100000;
+        int iterationNumber = 100000; // это выглядит как кандидат на аргумент метода
         long start = System.currentTimeMillis();
         for (int i = 0; i < iterationNumber; i++) {
             stringsToTests.append("S");
