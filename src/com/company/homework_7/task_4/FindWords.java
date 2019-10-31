@@ -17,12 +17,12 @@ public class FindWords {
         for (int i = 0; i < wordsArray.length; i++) {
             String word = wordsArray[i];
             int index = textLow.indexOf(word);
-            if (index != -1) {
+            while (index != -1) {
                 count++;
                 System.out.println("Word '" + wordsArray[i] + "' repeates " + count + " time(s)");
-            } else {
-                System.out.println("No such word as '" + wordsArray[i] + "'");
-            }
+            } //else {
+            //   System.out.println("No such word as '" + wordsArray[i] + "'");
+            // }
         }
     }
 }
