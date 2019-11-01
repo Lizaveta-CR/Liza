@@ -4,6 +4,7 @@ public class WashingMachine {
     private PowerBlock powerBlock;
     boolean electricity = true;
     private String name;
+    private int MAX_POWER=100;
 
     public WashingMachine(String name, PowerBlock powerBlock) {
         this.name = name;
@@ -15,7 +16,7 @@ public class WashingMachine {
             while (electricity) {
                 System.out.println("Electricity is on");
                 // 100 в константу
-                if (powerBlock.getPower() > 100) {
+                if (powerBlock.getPower() > MAX_POWER) {
                     throw new WashingMachineException("Something is broken,I'm sorry...");
                 } else {
                     System.out.println("All right!");
@@ -26,9 +27,12 @@ public class WashingMachine {
         } catch (WashingMachineException e) {
             throw new WashingMachineException("Something is broken,I'm sorry...");
         } finally {
-            // осталось только создать метод слива воды
-            System.out.println("Water is flowing");
+            floating();
         }
+    }
+
+    private void floating(){
+        System.out.println("Water is flowing");
     }
 
     @Override
