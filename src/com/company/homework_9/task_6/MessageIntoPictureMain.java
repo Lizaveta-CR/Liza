@@ -3,7 +3,7 @@ package com.company.homework_9.task_6;
 import java.io.*;
 
 public class MessageIntoPictureMain {
-    private static final String FILE_PATH = "src/com/company/homework_9/task_6/3017769_0.jpg";
+    private static final String FILE_PATH = "src/com/company/homework_9/task_6/picture.jpg";
     private static String message = " zero factorial is equal to one ";
 
     public static void main(String[] args) {
