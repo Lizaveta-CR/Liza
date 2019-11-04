@@ -13,14 +13,17 @@ public class FindWords {
         String[] wordsArray = new String[]{"alert", "add", "good", "plan"};
 
         int count = 0;
-
+        int index=0;
         for (int i = 0; i < wordsArray.length; i++) {
             String word = wordsArray[i];
-            int index = textLow.indexOf(word);
-            while (index != -1) {
-                count++;
-                System.out.println("Word '" + wordsArray[i] + "' repeates " + count + " time(s)");
-            } //else {
+            while (index != -1){
+                index = textLow.indexOf(word,index+1);
+                System.out.println("Word '" + wordsArray[i] + "' repeates " + index + " time(s)");
+            }
+
+            //{
+               // count++;
+            //} //else {
             //   System.out.println("No such word as '" + wordsArray[i] + "'");
             // }
         }
