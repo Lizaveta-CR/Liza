@@ -6,7 +6,7 @@ public class TextWriteWithFOSMain {
     private static final String FILE_PATH = "src/com/company/homework_9/task_2/TextFile";
 
     public static void main(String[] args) {
-        try (FileOutputStream fos = new FileOutputStream(FILE_PATH, true);
+        try (FileOutputStream fos = new FileOutputStream(FILE_PATH);
              BufferedOutputStream buff = new BufferedOutputStream(fos)) {
             int numberOFRec = 10000;
             for (int i = 0; i < numberOFRec; i++) {
