@@ -3,6 +3,7 @@ package com.company.homework_9.task_4;
 import java.io.*;
 
 public class ObjectMain {
+    // FILE_PATH
     private static final String FILE_NAME = "src/com/company/homework_9/task_4/ObjectFile";
 
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class ObjectMain {
     public static void createFile(String fileName) {
         File file = new File(fileName);
         try {
-            file.createNewFile();
+            file.createNewFile(); // этот метод возвращает boolean, я бы сделал твой void -> boolean
         } catch (IOException e) {
             System.out.println("Error in creating file" + e.getMessage());
         }
@@ -33,10 +34,13 @@ public class ObjectMain {
         }
     }
 
+    // void -> Employee
+    // зачем тебе аргумент Object object в методе?
     public static void readObjectFromFile(Object object, String fileName) {
         try (FileInputStream fis = new FileInputStream(fileName);
              ObjectInputStream obis = new ObjectInputStream(fis)) {
             Object obj = (Object) obis.readObject();
+            // obis.readObject(); итак вернет Object, а тебе нужно будет скастить до Employee
             System.out.println(obj);
         } catch (ClassNotFoundException | FileNotFoundException e) {
             System.err.println(e.getMessage());
