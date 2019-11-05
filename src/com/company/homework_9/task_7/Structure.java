@@ -10,12 +10,14 @@ public class Structure {
         try {
             if (file.isDirectory()) {
                 readFiles(file);
+                // else {}
             } else throw new DirectoryNotFoundException("No such file referred to as directory");
         } catch (DirectoryNotFoundException e) {
             System.err.println("No such file referred to as directory" + e.getMessage());
         }
     }
 
+    // directory -> судя по коду это может быть не только директория, назови 'file'
     public static void readFiles(File directory) {
         for (File file : directory.listFiles()) {
             if (file.isFile()) {
