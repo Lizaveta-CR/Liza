@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class TextReadFRMain {
+    // FILE_NAME -> FILE_PATH имя это имя файла
     private static final String FILE_NAME = "src/com/company/homework_9/task_2/TextFileFW";
 
     public static void main(String[] args) {
