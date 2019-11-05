@@ -32,12 +32,13 @@ public class MessageIntoPictureMain {
         }
     }
 
-    public static void readMessageFromFile(String FILE_PATH) {
+    public static void readMessageFromFile(String FILE_PATH) { // FILE_PATH -> filePath
         try (FileReader fileReader = new FileReader(FILE_PATH);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String secretMessage;
+            // есть метод read(char[] buff, откуда, сколько), бежать по всему файлу нет необходимости
             while ((secretMessage = bufferedReader.readLine()) != null) {
-                System.out.print(secretMessage);
+                System.out.print(secretMessage); // мне кажется здесь таким образом ты выведешь весь файл на экран, а не только секретное сообщение
             }
         } catch (IOException e) {
             System.err.println("Error in reading" + e.getMessage());
