@@ -11,7 +11,7 @@ public class TextReadFOSMain {
     public static void main(String[] args) {
         try (FileInputStream fis = new FileInputStream(FILE_PATH);
              BufferedInputStream buff = new BufferedInputStream(fis)) {
-            int string;
+            int string; // int string - выглядить странно
             while ((string = buff.read()) != -1) {
                 System.out.print((char) string);
             }
