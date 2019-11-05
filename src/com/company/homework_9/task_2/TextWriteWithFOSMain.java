@@ -2,6 +2,7 @@ package com.company.homework_9.task_2;
 
 import java.io.*;
 
+// +
 public class TextWriteWithFOSMain {
     private static final String FILE_PATH = "src/com/company/homework_9/task_2/TextFile";
 
