@@ -9,6 +9,7 @@ public class ArrayFileMain {
 
     public static void main(String[] args) {
 
+        // старайся выносить код в отдельные методы
         try (FileOutputStream fos = new FileOutputStream(FILE_PATH, true)) {
             int[] array = new int[5];
             for (int i = 0; i < array.length; i++) {
