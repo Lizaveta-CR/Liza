@@ -10,9 +10,11 @@ public class ObjectMain {
 
     public static void main(String[] args) {
         //наверное,я что-то делаю не так,раз все работает,ибо изменив private->public все осталось так же
+        // возможно я ошибся и изменение модификатора доступа не влияет
         readObjectFromFile(FILE_NAME);
     }
 
+    // void -> Employee
     public static void readObjectFromFile(String fileName) {
         try (FileInputStream fis = new FileInputStream(fileName);
              ObjectInputStream obis = new ObjectInputStream(fis)) {
