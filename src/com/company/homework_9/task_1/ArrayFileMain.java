@@ -3,29 +3,26 @@ package com.company.homework_9.task_1;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class ArrayFileMain {
     private static final String FILE_PATH = "src/com/company/homework_9/Arrayfile";
 
     public static void main(String[] args) {
-
         // старайся выносить код в отдельные методы
-        try (FileOutputStream fos = new FileOutputStream(FILE_PATH, true)) {
-            int[] array = new int[5];
-            for (int i = 0; i < array.length; i++) {
-                array[i] = (int) (Math.random() * 10);
-                fos.write(array[i]);
-            }
-            fos.flush();
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
+        int[] array = new int[5];
+        writeFile(FILE_PATH, array);
+    }
 
-        try (FileInputStream fis = new FileInputStream(FILE_PATH)) {
-            int data;
-            while ((data = fis.read()) != -1) {
-                System.out.print(data);
+    public static void writeFile(String fileName, int[] ints) {
+        try (FileOutputStream fos = new FileOutputStream(fileName)) {
+            for (int i = 0; i < ints.length; i++) {
+                ints[i] = (int) (Math.random() * 10);
             }
+            fos.write(Arrays.toString(ints).getBytes());
+
+            fos.flush();
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

@@ -3,24 +3,32 @@ package com.company.homework_9.task_2;
 import java.io.*;
 
 public class TextWriteWithFWMain {
-    private static final String FILE_NAME = "src/com/company/homework_9/task_2/TextFileFW";
+    private static final String FILE_PATH = "src/com/company/homework_9/task_2/TextFileFW";
 
     public static void main(String[] args) {
-        File file = new File(FILE_NAME);
         // этот try в отдельный метод
+        createFile(FILE_PATH);
+        // этот try тоже
+        int of = 10000; // numberOFRec -> Of
+        String text = "Hello from Java";
+        writeFile(FILE_PATH,text,of);
+    }
+
+    public static void createFile(String fileName) {
+        File file = new File(fileName);
         try {
             file.createNewFile();
         } catch (IOException e) {
             System.err.println("File can not be created" + e.getMessage());
         }
+    }
 
-       // этот try тоже
-        try (FileWriter fileWriter = new FileWriter(FILE_NAME);
+    public static void writeFile(String fileName, String text, int of) {
+        try (FileWriter fileWriter = new FileWriter(fileName);
              BufferedWriter buff = new BufferedWriter(fileWriter)) {
-            int numberOFRec = 10000; // numberOFRec -> Of
-            String text = "Hello from Java";
-            for (int i = 0; i < numberOFRec; i++) {
-                buff.append(" Hello from Java");
+
+            for (int i = 0; i < of; i++) {
+                buff.append(text);
                 buff.write("\n");
             }
 // пустая строка не нужна

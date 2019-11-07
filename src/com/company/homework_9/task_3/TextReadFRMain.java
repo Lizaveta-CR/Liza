@@ -7,10 +7,10 @@ import java.io.IOException;
 
 public class TextReadFRMain {
     // FILE_NAME -> FILE_PATH имя это имя файла
-    private static final String FILE_NAME = "src/com/company/homework_9/task_2/TextFileFW";
+    private static final String FILE_PATH = "src/com/company/homework_9/task_2/TextFileFW";
 
     public static void main(String[] args) {
-        try (FileReader fileReader = new FileReader(FILE_NAME);
+        try (FileReader fileReader = new FileReader(FILE_PATH);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {

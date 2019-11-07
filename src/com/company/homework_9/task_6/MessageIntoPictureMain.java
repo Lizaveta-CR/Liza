@@ -32,8 +32,8 @@ public class MessageIntoPictureMain {
         }
     }
 
-    public static void readMessageFromFile(String FILE_PATH) { // FILE_PATH -> filePath
-        try (FileReader fileReader = new FileReader(FILE_PATH);
+    public static void readMessageFromFile(String filePath) { // FILE_PATH -> filePath
+        try (FileReader fileReader = new FileReader(filePath);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String secretMessage;
             // есть метод read(char[] buff, откуда, сколько), бежать по всему файлу нет необходимости
