@@ -10,25 +10,23 @@ public class FindWords {
                 "Plan is to make the game as good as possible but without compromising the core idea.";
 
         String textLow = text.toLowerCase();
-        String[] wordsArray = new String[]{"alert", "add", "good", "plan"};
+        String[] wordsArray = {"alert", "add", "good", "plan"};
+
+        //  System.out.println("badword count: " + (length - sentenceEntered.replace(badword,"").length() / badwordLength));
+
 
         int count = 0;
-        int index=0;
+        int index = 0;
         for (int i = 0; i < wordsArray.length; i++) {
-            String word = wordsArray[i];
-            while (index != -1){
-                index = textLow.indexOf(word,index+1);
-                System.out.println("Word '" + wordsArray[i] + "' repeates " + index + " time(s)");
+            do {
+                index = textLow.indexOf(wordsArray[i], index + 1);
+                count++;
             }
-
-            //{
-               // count++;
-            //} //else {
-            //   System.out.println("No such word as '" + wordsArray[i] + "'");
-            // }
+            while (index != -1);
         }
     }
 }
+
 /*
 No such word as 'alert'
 Word 'add' repeates 1 time(s)
