@@ -1,5 +1,6 @@
 package com.company.homework_10.task_3;
 
+// +
 public class Lada implements Car {
     private int num;
 
