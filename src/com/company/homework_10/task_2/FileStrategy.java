@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public enum FileStrategy {
+    // в методе renameFile твоих стратегий много кода, который дублируется, думаю его стоит вынести в общий метод
     NAME_LOWER_CASE {
         @Override
         public void renameFile(File file) {
