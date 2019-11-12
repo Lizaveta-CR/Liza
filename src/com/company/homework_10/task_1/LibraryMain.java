@@ -8,6 +8,7 @@ public class LibraryMain {
         showType(reader_2);
     }
 
+    // Library -> void
     private static Library showType(Library reader) {
         System.out.println("Name: " + reader.getPersonName() + " - " + reader.getPersonName().getClass());
         System.out.println("PersonId: " + reader.getPersonId() + " - " + reader.getPersonId().getClass());
