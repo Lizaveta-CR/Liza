@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Garage<T> {
     private T[] car;
 
-
+// пустая строка не нужна
     public Garage(T[] car) {
         this.car = car;
     }
