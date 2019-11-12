@@ -24,6 +24,8 @@ public class FileRenameMain {
         }
 
         FileRenameMain fileToChangeName = new FileRenameMain();
+        // метод perfomStrategy у тебя статик, не надо создавать экземпляр FileRenameMain
+        // можно просто вызвать perfomStrategy из метода main()
         fileToChangeName.perfomStrategy(FileStrategy.NAME_LOWER_CASE, fileJava);
         fileToChangeName.perfomStrategy(FileStrategy.NAME_LITTLE_BIG, fileWorld);
         fileToChangeName.perfomStrategy(FileStrategy.NAME_CAPS, fileOk);
