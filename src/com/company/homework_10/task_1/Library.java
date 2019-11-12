@@ -1,5 +1,6 @@
 package com.company.homework_10.task_1;
 
+// +
 public class Library<S, T> {
     private S personName;
     private T personId;
