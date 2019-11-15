@@ -30,7 +30,6 @@ public class BenchmarkMiddle {
                 list.remove(i);
             }
         }
-        //тут я что-то вообще не поняла,как ,удалив середину, пойти "в две стороны",удаляя все элементы.
     }
 
     public static void testLists(List<Integer> list) throws IOException {
