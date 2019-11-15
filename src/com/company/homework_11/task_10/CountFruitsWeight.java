@@ -21,6 +21,16 @@ public class CountFruitsWeight {
 
         Map<Integer, Fruits> fruitsMap = new HashMap<>();
         for (Fruits fruits : fruitsList) {
+            /*
+           key =  fruit.getName;
+            Integer currWeight =  fruit.getWeight();
+           if(fruitMap.contains(key) {
+         Integer weight =  fruitsMap.get(key);
+        fruitsMap.put(key, weight+currWeight);
+           } else {
+           fruitsMap.put(key, fruitWeight);
+           }
+           */
             int weight = fruits.getWeight();
             fruitsMap.put(weight, fruits);
         }
