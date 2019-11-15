@@ -1,7 +1,5 @@
 package com.company.homework_11.task_11;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class TreeSetNames {
