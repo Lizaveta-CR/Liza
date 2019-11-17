@@ -32,6 +32,7 @@ public class BenchmarkMiddle {
         }
     }
 
+    // лучше если метод будет возвращать время, а выводить уже в методе main
     public static void testLists(List<Integer> list) throws IOException {
         long start = System.currentTimeMillis();
         remove(list);
