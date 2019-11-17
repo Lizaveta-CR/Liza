@@ -3,6 +3,7 @@ package com.company.homework_11.task_8;
 import java.util.HashSet;
 import java.util.Set;
 
+// +
 public class HashSetShops {
     public static void main(String[] args) {
         Set<Shop> shops = new HashSet<>();
