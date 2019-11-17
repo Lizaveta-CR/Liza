@@ -16,6 +16,10 @@ public class TreeSetNames {
         System.out.println(names.subSet("H", "W"));
 
         //почему не работает этот метод?
+        /*
+        1. вместо name.substring(0, 1) -> name.startsWith()
+        2. можно у TreeSet вызвать метод subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+        */
         String[] strings = {"h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"};
         for (String name : names) {
             name = name.substring(0, 1).toLowerCase();
