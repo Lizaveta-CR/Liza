@@ -31,9 +31,12 @@ public class BenchmarkFromBeginning {
 //        Iterator<Integer> iterator = list.iterator();
 //        while (iterator.hasNext()) {
 //            iterator.remove();                  //не понимаю,почему это не работает
+        
+       //перед тем как вызывать remove() нужно передвинуть указатель вызвав метод next()
 //        }
     }
 
+    // лучше если метод будет возвращать время, а выводить уже в методе main
     public static void testLists(List<Integer> list) throws IOException {
         long start = System.currentTimeMillis();
         remove(list);
