@@ -2,7 +2,7 @@ package com.company.homework_11.task_8;
 
 public class Shop {
     private String name;
-    private int ID;
+    private int ID; // id
 
     public Shop(String name, int ID) {
         this.name = name;
