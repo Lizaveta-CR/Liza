@@ -8,7 +8,7 @@ public class ReverseTreeSet {
     public static void main(String[] args) {
         Comparator<Integer> customComparator = new CustomComparator();
         customComparator = customComparator.reversed();
-        Set<Integer> integers = new TreeSet<>(customComparator);
+        Set<Integer> integers = new TreeSet<>(customComparator); // customComparator -> Collections.reverseOrder()
         int numOfIteration = 100;
         for (int i = 0; i < numOfIteration; i++) {
             integers.add(i = i + i ^ 2);
