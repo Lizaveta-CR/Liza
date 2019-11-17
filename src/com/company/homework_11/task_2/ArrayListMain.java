@@ -15,6 +15,7 @@ public class ArrayListMain {
         System.out.println("After deleting: " + ints);
     }
 
+    // SIZE лучше передавать аргументом в метод
     private static void addElements(List<Integer> integerList) {
         int[] numbers = new int[SIZE];
         for (int i = 0; i < numbers.length; i++) {
