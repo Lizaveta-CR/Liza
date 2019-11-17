@@ -21,6 +21,7 @@ public class CountFruitsWeight {
         Map<String, Integer> fruitsMap = new HashMap<>();
         for (Fruits fruits : fruitsList) {
             if (fruitsMap.containsKey(fruits.getName())) {
+                // лучше не писать код в такую длинную строку. сложение лучше вынести в отдельную переменную
                 fruitsMap.put(fruits.getName(), fruitsMap.get(fruits.getName()) + fruits.getWeight());
             } else {
                 fruitsMap.put(fruits.getName(), fruits.getWeight());
