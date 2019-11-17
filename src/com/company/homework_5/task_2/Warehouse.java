@@ -29,7 +29,7 @@ public class Warehouse {
 
     @Override
     public String toString() {
-        return "FruitsWarehouse{" +
+        return "Warehouse{" +
                 "boxes=" + Arrays.toString(boxes) +
                 '}';
     }
