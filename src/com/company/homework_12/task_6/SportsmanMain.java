@@ -8,10 +8,9 @@ import java.util.List;
 
 public class SportsmanMain {
     public static void main(String[] args) throws InterruptedException {
-        //только не поняла одно:куда добавить 600
         List<Sportsman> sportsmanList = getSportsman();
         run(sportsmanList, 600);
-        
+
         System.out.println("Ladies and gentlemen we have winners: ");
         sportsmanList.sort(Sportsman::compareTo);
 
