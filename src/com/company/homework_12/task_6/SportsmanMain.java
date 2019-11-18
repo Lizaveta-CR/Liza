@@ -23,7 +23,6 @@ public class SportsmanMain {
 
     private static List<Sportsman> getSportsman() {
         List<Sportsman> sportsmanList = new ArrayList<>();
-        Map<Integer, Color> runnerMap = new HashMap<>();
         sportsmanList.add(new Sportsman("Valera", 100));
         sportsmanList.add(new Sportsman("Alexey", 119));
         sportsmanList.add(new Sportsman("Oleg", 89));
