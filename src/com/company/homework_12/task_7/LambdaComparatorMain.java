@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LambdaComparatorMain {
     public static void main(String[] args) {
-        Comparator<String> stringComparator = (String first, String second) -> -first.compareTo(second);
+        Comparator<String> stringComparator = (String first, String second) -> -first.compareTo(second); // -first.compareTo(second) -> -1 * first.compareTo(second) так виднее
         List<String> stringList = new ArrayList<>();
         stringList.add("Winter");
         stringList.add("is");
