@@ -7,6 +7,7 @@ public class ParseMain {
         System.out.println(result);
     }
 
+    // showRub, и этот метод ничего не показывает, он парсит
     private static String showRUB(Parse parse, int value) {
         return parse.showRUB(value);
     }
