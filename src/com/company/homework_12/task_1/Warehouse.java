@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Warehouse {
     public static void main(String[] args) throws InterruptedException {
+        // у коробки стоило сделать поле timeAdded и сетать его перед добавлением в хранилище
         Set<Box> boxes = new HashSet<>();
 
         boxes.add(new Box("Books"));
