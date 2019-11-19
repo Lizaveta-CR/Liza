@@ -1,5 +1,6 @@
 package com.company.homework_12.task_1;
 
+// +
 public class Box implements Comparable<Box> {
     private String name;
 
