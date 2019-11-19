@@ -2,6 +2,7 @@ package com.company.homework_12.task_4;
 
 import java.util.Scanner;
 
+// +
 public class UserMain {
     public static void main(String[] args) {
         UserCreator creator = () -> {
