@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
+// +
 public class UserPredicateMain {
     public static void main(String[] args) {
         List<User> users = new ArrayList<>();
