@@ -32,6 +32,9 @@ public class SportsmanMain {
         return sportsmanList;
     }
 
+    // ты в метод передаешь sportsmanList но никак его не используешь, зачем он тогда здесь?
+    // можно пробежаться по списку спортсменов, у каждого ведь есть своя скорость и таким образом заменишь averageSpeed на скорость спортсмена
+    // плюс это даст возможность узнать кто же пробежал дистанцию быстрее
     private static void run(List<Sportsman> sportsmanList, int distance) throws InterruptedException {
         int averageSpeed = 100;
         int totalTime = distance / averageSpeed;
@@ -39,6 +42,7 @@ public class SportsmanMain {
         Thread.sleep(totalTime + 3000);
     }
 
+    // а если будет коллекция из 1 спортсмена? или из двух? можно пробежаться в цикле по каждому элементу, так будет правильно
     private static Map<Integer, Sportsman> getWinners(List<Sportsman> sportsmanList) {
         Map<Integer, Sportsman> runnerMap = new HashMap<>();
         Sportsman firstSportsman = sportsmanList.get(0);
@@ -50,9 +54,11 @@ public class SportsmanMain {
         Sportsman thirdSportsman = sportsmanList.get(2);
         thirdSportsman.setMedal(MedalStrategy.BRONZE_MEDAL);
         runnerMap.put(3, thirdSportsman);
+       
         return runnerMap;
     }
-
+    
+// метод getLastSportsman исходя из названия должен возвращать одного спортсмена
     private static Map<Integer, Sportsman> getLastSportsman(List<Sportsman> sportsmanList) {
         Map<Integer, Sportsman> runnerMap = new HashMap<>();
         int firstIteration = 3;
