@@ -3,6 +3,7 @@ package com.company.homework_12.task_3;
 import java.util.Scanner;
 import java.util.function.BinaryOperator;
 
+// +
 public class Multiplication {
     public static void main(String[] args) {
         BinaryOperator<Integer> multiply = (x, y) -> x * y;
