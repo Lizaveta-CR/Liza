@@ -16,6 +16,7 @@ public class FindNumber {
         Optional<Integer> intStream = integers.stream()
                 .filter(integer -> integer > 22)
                 .findFirst();
+        // а если в коллекции не будет числа > 22? будет исключение, когда ты вызовешь метод get(), добавь проверку
         System.out.println(intStream.get());
     }
 }
