@@ -2,6 +2,7 @@ package com.company.homework_13.task_3;
 
 import java.util.Objects;
 
+// +
 public class Phone {
     private String model;
     private int price;
