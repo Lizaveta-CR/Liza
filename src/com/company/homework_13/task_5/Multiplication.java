@@ -16,6 +16,7 @@ public class Multiplication {
                 .limit(5)
                 .reduce((x, y) -> x * y);
 
+        // если коллекция будет пустой, то multInt будет Optional.empty() и будет исключение, добавь проверку multInt.ifPresent()
         System.out.println("Multiplication of first five elements is " + (multInt.get()));
     }
 }
