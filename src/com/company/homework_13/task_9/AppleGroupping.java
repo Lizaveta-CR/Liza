@@ -21,6 +21,7 @@ public class AppleGroupping {
         phones.add(new Phone("Samsung", 1200));
         phones.add(new Phone("Xiaomi", 399));
 
+        // твой вариант не оптимальный, дважды нужно итерироваться по коллекции. На лекции я показывал вариант с partitioning, посмотри его
         List<Phone> appleGrouping = phones.stream()
                 .filter(phone -> phone.getModel().contains("Apple"))
                 .collect(Collectors.toList());
