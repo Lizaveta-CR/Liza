@@ -17,6 +17,7 @@ public class PhonesMain {
 
         List<String> producer = phones.stream()
                 .map(Phone::getModel)
+            // лучше сделать коллекцию из этих слов и вызывать у этой коллекции contains
                 .filter(string -> string.contains("Apple") || string.contains("Samsung") || string.contains("Xiaomi"))
                 .collect(Collectors.toList());
         System.out.println(producer);
