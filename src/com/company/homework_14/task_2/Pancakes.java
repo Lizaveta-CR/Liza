@@ -5,6 +5,8 @@ import java.io.*;
 /*
 Есть текстовый файл. Нужно скопировать из него только те строки, которые содержат слово pancakes и записать их в другой файл
  */
+
+//+
 public class Pancakes {
     private static final String PATH_OLD = "src/com/company/homework_14/task_2/FileWithPancakes";
     private static final String PATH_NEW = "/Users/elizaveta/IdeaProjects/Liza/src/com/company/homework_14/task_2/NewPancakes";
