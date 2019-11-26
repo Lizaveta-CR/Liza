@@ -23,7 +23,7 @@ public class Pancakes {
         ) {
             String pancakes;
             while ((pancakes = bufferedReader.readLine()) != null) {
-                if (pancakes.toLowerCase().contains("pancakes")) {
+                if (pancakes.toLowerCase().contains("pancakes")) { // в константу
                     fileWriter.write(pancakes + "\n");
                 }
             }
