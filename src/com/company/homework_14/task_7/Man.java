@@ -8,6 +8,7 @@ public class Man {
     private int telNumber;
 
     public Man(String name, int telNumber) {
+        // this(name, null, tellNumber)
         this.name = name;
         this.telNumber = telNumber;
     }
