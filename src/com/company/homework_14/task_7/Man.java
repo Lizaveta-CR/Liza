@@ -7,17 +7,32 @@ public class Man {
     private String surname;
     private int telNumber;
 
-    public Man(String name, String surname, int... telNumber) {
+    public Man(String name, int telNumber) {
         this.name = name;
-        if (telNumber == null) {
-            this.surname = surname;
-        } else {
-            if (surname.matches("(.)*(\\d)(.)*")) {
-                //дальше я не могу придумать,только если добавить новый конструктор
-                // this.telNumber = surname;
-            }
-        }
+        this.telNumber = telNumber;
     }
+
+    public Man(String name, String surname, int telNumber) {
+        this.name = name;
+        this.surname = surname;
+        this.telNumber = telNumber;
+    }
+
+    public Man(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+    //    public Man(String name, String surname, int... telNumber) {
+//        this.name = name;
+//        if (telNumber == null) {
+//            this.surname = surname;
+//        } else {
+//            if (surname.matches("(.)*(\\d)(.)*")) {
+//                //дальше я не могу придумать,только если добавить новый конструктор
+//                this.telNumber = Integer.parseInt(surname);
+//            }
+//        }
+//    }
 
 //    public Man(String name, int telNumber) {
 //        this.name = name;
@@ -29,7 +44,7 @@ public class Man {
         return "Man{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", telNumber='" + telNumber + '\'' +
+                ", telNumber=" + telNumber +
                 '}';
     }
 }
