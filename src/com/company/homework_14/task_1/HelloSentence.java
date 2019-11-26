@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class HelloSentence {
     public static void main(String[] args) {
+        // используй шаблон String.format() %s, %d
         String string = "Hello, my name is Alex. I'm java developer and I'm glad to become a part of your company.";
 
         Scanner scanner = new Scanner(System.in);
