@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
+// +
 public class StringUtils {
     public static void showPalindrome(String text) {
         String cleanText = text.replaceAll("\\p{P}", "").toLowerCase();
