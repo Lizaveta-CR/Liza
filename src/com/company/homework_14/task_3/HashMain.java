@@ -18,6 +18,7 @@ public class HashMain {
         secondHashMap.put("firstArray", new ArrayList<>(Arrays.asList(2, 4, 6, 8)));
 
         secondHashMap.forEach((key, value) -> firstHashMap.merge(key, value, (list1, list2) -> {
+            // в идеале создать третий лист и туда два запихнуть
             list1.addAll(list2);
             return list1;
         }));
