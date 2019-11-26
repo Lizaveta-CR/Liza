@@ -2,6 +2,7 @@ package com.company.homework_14.task_5;
 
 import java.io.Serializable;
 
+//+ 
 public class Cat implements Serializable {
     private String breed;
     private int age;
