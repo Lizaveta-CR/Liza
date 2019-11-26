@@ -26,17 +26,21 @@ public class ArraySort {
                 totalIndex++;
                 secondIndex++;
             }
+            // totalIndex++;
         }
+        // этот цикл выглядит очень странно
         while (firstIndex < firstArray.length) {
             totalArray[totalIndex] = firstArray[firstIndex];
             totalIndex++;
             firstIndex++;
         }
+        // этот цикл выглядит очень странно, как минимум стоить вынести в отдельный метод
         while (secondIndex < secondArray.length) {
             totalArray[totalIndex] = secondArray[secondIndex];
             totalIndex++;
             secondIndex++;
         }
+        // дубликаты удалять не нужно
         return removeDuplicates(totalArray);
     }
 
