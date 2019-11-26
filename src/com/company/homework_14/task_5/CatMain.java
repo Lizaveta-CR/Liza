@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// +
 public class CatMain {
     private static final String PATH = "src/com/company/homework_14/task_5/Cats";
 
