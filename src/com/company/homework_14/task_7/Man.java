@@ -9,8 +9,8 @@ public class Man {
 
     public Man(String name, int telNumber) {
         // this(name, null, tellNumber)
-        this.name = name;
-        this.telNumber = telNumber;
+        this.name = name; // удалить
+        this.telNumber = telNumber; // удалить
     }
 
     public Man(String name, String surname, int telNumber) {
