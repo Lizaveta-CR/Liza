@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SAXReader {
-    //программа не работает
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory parserFactory = SAXParserFactory.newInstance();
         SAXParser parser = parserFactory.newSAXParser();

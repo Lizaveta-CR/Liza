@@ -28,8 +28,9 @@ class SAXHandler extends DefaultHandler {
         switch (qName) {
             case "student":
                 studList.add(stud);
+                break;
             case "groupNum":
-                stud.setGroupNum(Integer.parseInt(content));//тут ругается.может это из-за строчки " private String content = null;"?
+                stud.setGroupNum(Integer.parseInt(content));
                 break;
             case "name":
                 stud.setName(content);
