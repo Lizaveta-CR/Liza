@@ -35,9 +35,6 @@ public class ParseKinogo {
         for (Element element : information) {//в этом цикле я не понимаю,какой тэг использовать
             String info = element.text();
             System.out.println(info);
-            //  }
-            //  }
-
         }
     }
 }
