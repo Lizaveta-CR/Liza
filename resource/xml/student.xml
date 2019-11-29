@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<students>
+    <student id="1">
+        <groupNum>3</groupNum>
+        <name>Liza</name>
+        <surname>Tsvirko</surname>
+        <faculty>MMF</faculty>
+    </student>
+    <student id="2">
+        <groupNum>4</groupNum>
+        <name>Kate</name>
+        <surname>Tsirul</surname>
+        <faculty>POH</faculty>
+    </student>
+    <student id="3">
+        <groupNum>1</groupNum>
+        <name>Olya</name>
+        <surname>Nord</surname>
+        <faculty>LKJ</faculty>
+    </student>
+    <student id="4">
+        <groupNum>10</groupNum>
+        <name>Mikhail</name>
+        <surname>Vasilevich</surname>
+        <faculty>LKJ</faculty>
+    </student>
+</students>

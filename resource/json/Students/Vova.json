@@ -1,0 +1,17 @@
+{
+  "id": "3",
+  "groupNum": 3,
+  "name": "Vova",
+  "surname": "Vasilev",
+  "faculty": "Business administration",
+  "favSubject": [
+    {
+      "subName": "Economics",
+      "mark": 9
+    },
+    {
+      "subName": "Computer science",
+      "mark": 9
+    }
+  ]
+}
