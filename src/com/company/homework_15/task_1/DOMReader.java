@@ -61,6 +61,7 @@ public class DOMReader {
                 students.add(student);
             }
         }
+        // students.forEach(System.out::println); твой способ не ошибка
         students.forEach(student -> System.out.println(student));
     }
 }
