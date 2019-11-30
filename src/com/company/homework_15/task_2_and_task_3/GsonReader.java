@@ -7,6 +7,7 @@ import java.io.*;
 
 public class GsonReader {
     public static void main(String[] args) throws IOException {
+        // путь в константу и он должен быть относительным, а не абсолютным
         showAllJson("/Users/elizaveta/IdeaProjects/Liza/resource/json");
     }
 
@@ -22,6 +23,8 @@ public class GsonReader {
 
     private static void showAllJson(String dir) {
         File f = new File(dir);
+        // думаю лучше проверки на налл проверять существует файл или нет 
+        // и тогда у тебя просто будет пустой список файлов внутри, если директория сущестует и она пустая
         File[] list = f.listFiles();
 
         if (list == null) {
