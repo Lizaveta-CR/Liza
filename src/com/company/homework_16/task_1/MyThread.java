@@ -7,8 +7,10 @@ public class MyThread extends Thread {
 
     @Override
     public void run() {
+        String name = Thread.currentThread().getName();
         for (int i = 0; i <= 10; i++) {
             System.out.println("Number: " + i);
         }
+        System.out.println(name + " finished");
     }
 }
