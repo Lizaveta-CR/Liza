@@ -2,6 +2,7 @@ package com.company.homework_16.hw_15Task_4;
 
 import java.util.Date;
 
+// +
 public class Film {
     private int year;
     private String country;
