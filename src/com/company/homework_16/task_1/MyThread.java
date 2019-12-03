@@ -8,6 +8,7 @@ public class MyThread extends Thread {
     @Override
     public void run() {
         String name = Thread.currentThread().getName();
+        // 10 лучше через конструктор
         for (int i = 0; i <= 10; i++) {
             System.out.println("Number: " + i);
         }
