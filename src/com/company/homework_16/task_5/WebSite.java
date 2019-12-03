@@ -1,5 +1,6 @@
 package com.company.homework_16.task_5;
 
+// +
 class WebSite {
     private String url;
     private WebsiteType type;
