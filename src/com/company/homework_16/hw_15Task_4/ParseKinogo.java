@@ -1,4 +1,4 @@
-package com.company.homework_15.task_4;
+package com.company.homework_16.hw_15Task_4;
 
 import com.company.homework_15.entity.Film;
 import org.jsoup.Jsoup;
@@ -41,8 +41,8 @@ public class ParseKinogo {
 
     private static Film getYear(Element element) {//как мне лучше искать год?просто я не могу придумать хороший алгоритм
         Film film = new Film();
-        String year = element.select("b:contains(Год выпуска:)").toString();
-        film.setYear(Integer.parseInt(year));
+        //   String year = element.select("b:contains(Год выпуска:)").toString();
+        //  film.setYear(Integer.parseInt(year));
 //        List<String> filmsName = getFilmsName(doc);
 //        int year;
 //        for (String s : filmsName) {
@@ -67,7 +67,7 @@ public class ParseKinogo {
     }
 
 
-    private static List<String> getDescription(Document doc) {
+    private static List<String> getDescription(Document doc) {//лушче так или передавать это в константы?Или ни то,ни то?
         List<String> strings = new ArrayList<>();
         Elements tags = doc.getElementsByTag("b");
         String[] stringTags = {"Год выпуска", "Страна", "Жанр", "Качество", "Перевод", "Продолжительность", "Премьера"};
