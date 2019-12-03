@@ -1,7 +1,7 @@
 package com.company.homework_16.task_2;
 
 public class CustomThread implements Runnable {
-    private static final int NUM_OF_ITERATIONS = 20;
+    private static final int NUM_OF_ITERATIONS = 20; // лучше через конструктор
 
     @Override
     public void run() {
