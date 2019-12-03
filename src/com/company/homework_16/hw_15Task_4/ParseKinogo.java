@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseKinogo {
+    // зачем тебе этот закомментированный код?
 //    private static final String YEAR = "Год выпуска: ";
 //    private static final String COUNTRY = " Страна: ";
 //    private static final String TYPE = " Жанр: ";
@@ -70,9 +71,10 @@ public class ParseKinogo {
     private static List<String> getDescription(Document doc) {//лушче так или передавать это в константы?Или ни то,ни то?
         List<String> strings = new ArrayList<>();
         Elements tags = doc.getElementsByTag("b");
-        String[] stringTags = {"Год выпуска", "Страна", "Жанр", "Качество", "Перевод", "Продолжительность", "Премьера"};
+        String[] stringTags = {"Год выпуска", "Страна", "Жанр", "Качество", "Перевод", "Продолжительность", "Премьера"}; // в статик поле
         for (Element paragraph : tags) {
             String tag = paragraph.text();
+            // может проще stringTags сделать листом и вызвать метод contains()? делать будет тоже самое практически, но код лишний не надо писать
             for (int i = 0; i < stringTags.length; i++)
                 if (tag.contains(stringTags[i])) {
                     strings.add(tag);
