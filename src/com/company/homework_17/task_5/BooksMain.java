@@ -14,7 +14,7 @@ public class BooksMain {
                 .map(Student::getBook)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        collect.forEach((k,v ) -> {
+        collect.forEach((k, v) -> {
             System.out.println(Arrays.toString(k));
             System.out.println(v);
             System.out.println("====");
