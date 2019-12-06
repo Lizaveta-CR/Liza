@@ -21,20 +21,20 @@ public class FilesMain {
         File f = new File(dir);
         File[] files = f.listFiles();
         for (File file : files) {
-            String name = file.getName();
+            String name = file.getAbsolutePath();
             Callable<Integer> fileCallable = new FileClass(name);
             callableList.add(fileCallable);
         }
 
-        for (int i = 0; i < length; i++) {
-            //Future<Integer> submit = executorService.submit(fileCallable); как мне сюда передать Callable?
-            //futures.add(submit);
+        for (Callable<Integer> callable : callableList) {
+            Future<Integer> submit = executorService.submit(callable);
+            futures.add(submit);
         }
+
         for (Future<Integer> future : futures) {
-            future.get();
-            //  Integer call = fileCallable.call();
-            // System.out.println(call);
+            Integer integer = future.get();
         }
+        System.out.println(futures);
         executorService.shutdown();
     }
 }

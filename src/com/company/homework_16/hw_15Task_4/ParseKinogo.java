@@ -42,6 +42,7 @@ public class ParseKinogo {
 
     private static Film getYear(Element element) {//как мне лучше искать год?просто я не могу придумать хороший алгоритм
         Film film = new Film();
+        //String year = movieElement.select("b:contains(Год выпуска:)").first().nextElementSibling().text();
         //   String year = element.select("b:contains(Год выпуска:)").toString();
         //  film.setYear(Integer.parseInt(year));
 //        List<String> filmsName = getFilmsName(doc);
