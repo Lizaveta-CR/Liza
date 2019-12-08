@@ -2,6 +2,7 @@ package com.company.homework_17.task_3;
 
 import java.util.concurrent.Callable;
 
+// Integer -> Long
 public class Factorial implements Callable<Integer> {
     private int begin;
     private int end;
