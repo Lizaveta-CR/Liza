@@ -9,6 +9,8 @@ public class AddThread {
     private ReentrantLock locker = new ReentrantLock();
 
     public void addToList(String string) {
+        // https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Lock.html#tryLock()
+        // у тебя не совсем корректно написана логика, if должен быть за пределами try, по ссылке выше пример
         try {
             // ок, главное понимать насколько для тебя важно чтобы все операции были точно выполнены, если обязатлеьно, 
             // то tryLock не подойдет и нужен просто lock()
@@ -17,7 +19,7 @@ public class AddThread {
                 stringList.add(string);
             }
         } finally {
-            locker.unlock();
+            locker.unlock(); // не получала IllegalMonitorStateException? если вызвать unlock() у незалоченного объекта
         }
     }
 
