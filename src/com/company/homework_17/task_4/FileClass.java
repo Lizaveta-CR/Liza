@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.concurrent.Callable;
 
+// Integer -> объект с именем файла и кол-вом слов
 public class FileClass implements Callable<Integer> {
     private String fileName;
 
@@ -26,7 +27,11 @@ public class FileClass implements Callable<Integer> {
             words = string.split(" ");
             wordsCont = wordsCont + words.length;
         }
-        fr.close();
+        fr.close(); // метод close нельзя вызывать просто вот так, обязательно в finally или используй try-with-resources
+        /*
+        try () {
+        }
+        */
         return wordsCont;
     }
 }
