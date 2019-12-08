@@ -2,6 +2,7 @@ package com.company.homework_17.task_1;
 
 import java.util.List;
 
+// +
 public class ReentrantLockMain {
     public static void main(String[] args) throws InterruptedException {
         AddThread addThread = new AddThread();
