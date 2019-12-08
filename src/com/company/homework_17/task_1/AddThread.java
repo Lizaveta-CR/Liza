@@ -10,6 +10,8 @@ public class AddThread {
 
     public void addToList(String string) {
         try {
+            // ок, главное понимать насколько для тебя важно чтобы все операции были точно выполнены, если обязатлеьно, 
+            // то tryLock не подойдет и нужен просто lock()
             boolean isLocked = locker.tryLock();
             if (isLocked) {
                 stringList.add(string);
