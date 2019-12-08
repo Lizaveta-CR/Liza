@@ -2,6 +2,7 @@ package com.company.homework_17.entity;
 
 import java.util.Arrays;
 
+// +
 public class Student {
     private String name;
     private Book[] book;
