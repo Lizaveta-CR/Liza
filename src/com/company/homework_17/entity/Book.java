@@ -2,6 +2,7 @@ package com.company.homework_17.entity;
 
 import java.util.Objects;
 
+// +
 public class Book {
     private String name;
     private int year;
