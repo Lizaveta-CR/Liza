@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Stream;
 
+// +
 public class AverageMain {
     public static void main(String[] args) {
         List<Integer> integerList = new ArrayList<>();
