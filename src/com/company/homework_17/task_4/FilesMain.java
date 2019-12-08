@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class FilesMain {
+    // путь должен быть относительным
     private static final String FILE_PATH = "/Users/elizaveta/IdeaProjects/Liza/src/com/company/homework_17/task_4/Files";
 
     public static void main(String[] args) throws Exception {
