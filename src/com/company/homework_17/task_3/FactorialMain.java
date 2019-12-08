@@ -8,6 +8,8 @@ import java.util.concurrent.*;
 public class FactorialMain {
     public static void main(String[] args) throws InterruptedException {
 //после 12 считает неправильно(независимо от "devidedNum").Как исправить ситуацию?
+        // посчитай факториал 13 в калькуляторе и ты увидишь что число очень большое и оно выходит за диапазон инта,
+        // поменяй на Long и твоя программа будет работать корректно
         int num = 13;
 
         int devidedNum = num / 2;
