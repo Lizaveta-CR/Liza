@@ -36,7 +36,7 @@ public class FactorialMain {
                     } catch (ExecutionException e) {
                         throw new RuntimeException();
                     }
-                    return 1;
+                    return 1; // если вернешь 1, то можешь полусить некорректный результат работы программы, а это гораздо хуже
                 })
                 .reduce((x, y) -> x * y);
 
