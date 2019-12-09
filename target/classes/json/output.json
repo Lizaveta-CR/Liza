@@ -1,0 +1,70 @@
+[
+  {
+    "id": "2",
+    "name": "Kate",
+    "surname": "Tsirul",
+    "faculty": "Physics",
+    "groupNum": 4,
+    "favSubject": [
+      {
+        "subName": "Physics",
+        "mark": 10
+      },
+      {
+        "subName": "Programming",
+        "mark": 10
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Kate",
+    "surname": "Wolfra",
+    "faculty": "Mechanics",
+    "groupNum": 6,
+    "favSubject": [
+      {
+        "subName": "Mechanics",
+        "mark": 8
+      },
+      {
+        "subName": "Programming",
+        "mark": 9
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "name": "Liza",
+    "surname": "Tsvirko",
+    "faculty": "Mathematics&mechanics",
+    "groupNum": 3,
+    "favSubject": [
+      {
+        "subName": "Mathematical analysis",
+        "mark": 10
+      },
+      {
+        "subName": "Differential equations",
+        "mark": 9
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Vova",
+    "surname": "Vasilev",
+    "faculty": "Business administration",
+    "groupNum": 3,
+    "favSubject": [
+      {
+        "subName": "Economics",
+        "mark": 9
+      },
+      {
+        "subName": "Computer science",
+        "mark": 9
+      }
+    ]
+  }
+]

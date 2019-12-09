@@ -1,0 +1,17 @@
+{
+  "id": "1",
+  "groupNum": 3,
+  "name": "Liza",
+  "surname": "Tsvirko",
+  "faculty": "Mathematics&mechanics",
+  "favSubject": [
+    {
+      "subName": "Mathematical analysis",
+      "mark": 10
+    },
+    {
+      "subName": "Differential equations",
+      "mark": 9
+    }
+  ]
+}
