@@ -3,7 +3,7 @@ package com.company.homework_17.task_3;
 import java.util.concurrent.Callable;
 
 // Integer -> Long
-public class Factorial implements Callable<Integer> {
+public class Factorial implements Callable<Long> {
     private int begin;
     private int end;
 
@@ -13,9 +13,9 @@ public class Factorial implements Callable<Integer> {
     }
 
     @Override
-    public Integer call() throws Exception {
-        int result = begin;
-        for (int i = ++begin; i <= end; i++) {
+    public Long call() {
+        long result = (long) begin;
+        for (int i = begin + 1; i <= end; i++) {
             result = result * i;
         }
         return result;
