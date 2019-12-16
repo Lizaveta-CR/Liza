@@ -8,6 +8,7 @@ public class Film {
     private String country;
     private String type;
     private String quality;
+    private String translation;
     private String continuance;
     private Date date;
 
@@ -43,6 +44,14 @@ public class Film {
         this.quality = quality;
     }
 
+    public String getTranslation() {
+        return translation;
+    }
+
+    public void setTranslation(String translation) {
+        this.translation = translation;
+    }
+
     public String getContinuance() {
         return continuance;
     }
@@ -66,6 +75,7 @@ public class Film {
                 ", country='" + country + '\'' +
                 ", type='" + type + '\'' +
                 ", quality='" + quality + '\'' +
+                ", translation='" + translation + '\'' +
                 ", continuance='" + continuance + '\'' +
                 ", date=" + date +
                 '}';
