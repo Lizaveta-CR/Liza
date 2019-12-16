@@ -8,16 +8,10 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ParseKinogo {
-    // зачем тебе этот закомментированный код?
-//    private static final String YEAR = "Год выпуска: ";
-//    private static final String COUNTRY = " Страна: ";
-//    private static final String TYPE = " Жанр: ";
-//    private static final String QUALITY = " Качество: ";
-//    private static final String CONTINUANCE = " Продолжительность: ";
-//    private static final String DATE = " Премьера: ";
 
     public static void main(String[] args) throws IOException {
         Document doc = Jsoup.connect("https://kinogo.by")
@@ -29,6 +23,8 @@ public class ParseKinogo {
         link.forEach(System.out::println);
         List<String> names = getFilmsName(doc);
         names.forEach(System.out::println);
+        List<String> years = getYear(doc);
+        years.forEach(System.out::println);
     }
 
     private static List<String> getFilmsName(Document document) {
@@ -40,9 +36,12 @@ public class ParseKinogo {
         return filmsNames;
     }
 
-    private static Film getYear(Element element) {//как мне лучше искать год?просто я не могу придумать хороший алгоритм
-        Film film = new Film();
-        //String year = movieElement.select("b:contains(Год выпуска:)").first().nextElementSibling().text();
+    private static List<String> getYear(Document document) {
+        List<String> yearsList = new ArrayList<>();
+        String years = document.select("b:contains(Год выпуска:)").first().nextElementSibling().text();
+
+        return yearsList;
+
         //   String year = element.select("b:contains(Год выпуска:)").toString();
         //  film.setYear(Integer.parseInt(year));
 //        List<String> filmsName = getFilmsName(doc);
@@ -56,7 +55,7 @@ public class ParseKinogo {
 //        for (Element title : filmTitles) {
 //            filmYear.add(title.text());
 //        }
-        return film;
+        // return year;
     }
 
     private static List<String> getLink(Document doc) {
@@ -69,7 +68,7 @@ public class ParseKinogo {
     }
 
 
-    private static List<String> getDescription(Document doc) {//лушче так или передавать это в константы?Или ни то,ни то?
+   /* private static List<String> getDescription(Document doc) {
         List<String> strings = new ArrayList<>();
         Elements tags = doc.getElementsByTag("b");
         String[] stringTags = {"Год выпуска", "Страна", "Жанр", "Качество", "Перевод", "Продолжительность", "Премьера"}; // в статик поле
@@ -82,6 +81,6 @@ public class ParseKinogo {
                 }
         }
         return strings;
-    }
+    }*/
 
 }
