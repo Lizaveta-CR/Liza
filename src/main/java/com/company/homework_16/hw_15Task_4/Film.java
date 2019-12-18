@@ -1,18 +1,19 @@
 package com.company.homework_16.hw_15Task_4;
 
+import java.util.Arrays;
 import java.util.Date;
 
-// +
 public class Film {
-    private int year;
     private String link;
     private String name;
+    private String description;
+    private int year;
     private String country;
     private String type;
     private String quality;
     private String translation;
     private String continuance;
-    private Date date;
+    private String date;
 
     private String getLink() {
         return link;
@@ -28,6 +29,14 @@ public class Film {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getYear() {
@@ -78,26 +87,27 @@ public class Film {
         this.continuance = continuance;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
     @Override
     public String toString() {
         return "Film{" +
-                "year=" + year +
-                ", link='" + link + '\'' +
+                "link='" + link + '\'' +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", year=" + year +
                 ", country='" + country + '\'' +
                 ", type='" + type + '\'' +
                 ", quality='" + quality + '\'' +
                 ", translation='" + translation + '\'' +
                 ", continuance='" + continuance + '\'' +
-                ", date=" + date +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

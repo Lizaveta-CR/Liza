@@ -7,7 +7,9 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ParseKinogo {
@@ -17,7 +19,9 @@ public class ParseKinogo {
                 .userAgent("Safari")
                 .get();
 
-        checkParse(doc);
+        //showParse(doc);
+        showListOfFilms(getLink(doc), getFilmsName(doc), getDescription(doc), getYear(doc), getCountry(doc), getType(doc),
+                getQuality(doc), getTranslation(doc), getContinuance(doc), getDate(doc));
     }
 
     private static List<String> getFilmsName(Document document) {
@@ -140,7 +144,34 @@ public class ParseKinogo {
         return linkList;
     }
 
-    private static void checkParse(Document doc) {
+    private static List<Film> showListOfFilms(List<String> links, List<String> filmesNames, List<String> descriptions, List<String> years,
+                                              List<List<String>> countries, List<List<String>> types, List<String> qualities, List<String> translations,
+                                              List<String> continuances, List<String> dates) {
+        int numberOfFilms = filmesNames.size();
+        List<Film> filmList = new ArrayList<>();
+        for (int i = 0; i < numberOfFilms; i++) {
+            Film film = new Film();
+            film.setLink(links.get(i));
+            film.setName(filmesNames.get(i));
+            film.setDescription(descriptions.get(i));
+            film.setYear(Integer.parseInt(years.get(i)));
+            film.setCountry(countries.get(i).get(i));/*
+            Exception in thread "main" java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+            */
+            film.setType(types.get(i).get(i));
+            film.setQuality(qualities.get(i));
+            film.setTranslation(translations.get(i));
+            film.setContinuance(continuances.get(i));
+            film.setDate(dates.get(i));
+            filmList.add(film);
+        }
+        return filmList;
+    }
+
+    private static void showParse(Document doc) {
         System.out.println("Links");
         List<String> link = getLink(doc);
         link.forEach(System.out::println);
