@@ -3,11 +3,13 @@ package com.company.homework_16.hw_15Task_4;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class ParseKinogo {
@@ -17,26 +19,36 @@ public class ParseKinogo {
                 .userAgent("Safari")
                 .get();
 
-//        List<String> link = getLink(doc);
-//        link.forEach(System.out::println);
+        System.out.println("Links");
+        List<String> link = getLink(doc);
+        link.forEach(System.out::println);
+        System.out.println("Film");
         List<String> names = getFilmsName(doc);
         names.forEach(System.out::println);
-//        List<String> year = getYear(doc);
-//        year.forEach(System.out::println);
-//        List<String> country = getCountry(doc);
-//        country.forEach(System.out::println);
+        System.out.println("Year");
+        List<String> year = getYear(doc);
+        year.forEach(System.out::println);
+        System.out.println("Country");
+        List<List<String>> country = getCountry(doc);
+        country.forEach(System.out::println);
+        System.out.println("Type");
         List<List<String>> type = getType(doc);
         type.forEach(System.out::println);
-//        List<String> quality = getQuality(doc);
-//        quality.forEach(System.out::println);
-//        List<String> continuance = getContinuance(doc);
-//        continuance.forEach(System.out::println);
-//        List<String> translation = getTranslation(doc);
-//        translation.forEach(System.out::println);
-//        List<String> date = getDate(doc);
-//        date.forEach(System.out::println);
-//        List<String> description = getDescription(doc);
-//        description.forEach(System.out::println);
+        System.out.println("Quality");
+        List<String> quality = getQuality(doc);
+        quality.forEach(System.out::println);
+        System.out.println("Continuance");
+        List<String> continuance = getContinuance(doc);
+        continuance.forEach(System.out::println);
+        System.out.println("translation");
+        List<String> translation = getTranslation(doc);
+        translation.forEach(System.out::println);
+        System.out.println("date");
+        List<String> date = getDate(doc);
+        date.forEach(System.out::println);
+        System.out.println("Description");
+        List<String> description = getDescription(doc);
+        description.forEach(System.out::println);
     }
 
     private static List<String> getFilmsName(Document document) {
@@ -48,7 +60,7 @@ public class ParseKinogo {
             for (String splittedString : strings) {
                 if (splittedString.matches(stringRegexNumber)) {
                     int titleNumberLength = splittedString.length();
-                    if (titleNumberLength >=4 & titleNumberLength <= 6) {
+                    if (titleNumberLength >= 4 & titleNumberLength <= 6) {
                         String replace = title.text().replace(splittedString, "");
                         filmsNames.add(replace);
                     } else {
@@ -69,30 +81,39 @@ public class ParseKinogo {
         return yearsList;
     }
 
-    private static List<String> getCountry(Document document) {
-        List<String> countryList = new ArrayList<>();
+    private static List<List<String>> getCountry(Document document) {
+        List<List<String>> countryList = new ArrayList<>();
         Elements countries = document.select("b:contains(Страна:)");
         for (Element country : countries) {
-            countryList.add(country.nextSibling().toString());
+            Node currentElement = country.nextSibling();
+            List<String> typeListForOneCountry = new ArrayList<>();
+            do {
+                if (!currentElement.toString().isEmpty()) {
+                    typeListForOneCountry.add(currentElement.toString().trim());
+                }
+                currentElement = currentElement.nextSibling();
+            }
+            while (!currentElement.toString().equals("<br>"));
+            countryList.add(typeListForOneCountry);
         }
         return countryList;
     }
 
     private static List<List<String>> getType(Document document) {
-
-        List<String> typeList = new ArrayList<>();
         List<List<String>> totalList = new ArrayList<>();
         Elements types = document.select("b:contains(Жанр:)");
-
         for (Element type : types) {
             Element currentElement = type.nextElementSibling();
+            List<String> typeListForOneFilm = new ArrayList<>();
             do {
-                typeList.add(currentElement.text());
+                if (!currentElement.text().isEmpty()) {
+                    typeListForOneFilm.add(currentElement.text());
+                }
                 currentElement = currentElement.nextElementSibling();
             }
-            while (!currentElement.text().equals("Качество:") || currentElement.text().isEmpty());
+            while (!currentElement.text().equals("Качество:"));
+            totalList.add(typeListForOneFilm);
         }
-        totalList.add(typeList);
         return totalList;
     }
 
