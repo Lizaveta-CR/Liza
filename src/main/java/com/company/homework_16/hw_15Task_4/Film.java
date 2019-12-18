@@ -2,14 +2,15 @@ package com.company.homework_16.hw_15Task_4;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class Film {
     private String link;
     private String name;
     private String description;
     private int year;
-    private String country;
-    private String type;
+    private List<String> country;
+    private List<String> type;
     private String quality;
     private String translation;
     private String continuance;
@@ -47,19 +48,19 @@ public class Film {
         this.year = year;
     }
 
-    public String getCountry() {
+    public List<String> getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(List<String> country) {
         this.country = country;
     }
 
-    public String getType() {
+    public List<String> getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(List<String> type) {
         this.type = type;
     }
 
@@ -102,8 +103,8 @@ public class Film {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", year=" + year +
-                ", country='" + country + '\'' +
-                ", type='" + type + '\'' +
+                ", country=" + country +
+                ", type=" + type +
                 ", quality='" + quality + '\'' +
                 ", translation='" + translation + '\'' +
                 ", continuance='" + continuance + '\'' +

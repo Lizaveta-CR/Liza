@@ -15,13 +15,18 @@ import java.util.List;
 public class ParseKinogo {
 
     public static void main(String[] args) throws IOException {
-        Document doc = Jsoup.connect("https://kinogo.by")
-                .userAgent("Safari")
-                .get();
-
-        //showParse(doc);
-        showListOfFilms(getLink(doc), getFilmsName(doc), getDescription(doc), getYear(doc), getCountry(doc), getType(doc),
-                getQuality(doc), getTranslation(doc), getContinuance(doc), getDate(doc));
+        String URL = "https://kinogo.by/page/";
+        int numberOfPagesToParse = 4;//ошибка film.setDate(dates.get(i)) в методе getistOfFilms
+        //и тут я столкнулась с проблемой:у какого-то фильма может чего-то не быть
+        for (int i = 1; i <= numberOfPagesToParse; i++) {
+            String newURL = URL.concat(String.valueOf(i));
+            Document doc = Jsoup.connect(newURL)
+                    .userAgent("Safari")
+                    .get();
+            List<Film> filmList = getListOfFilms(getLink(doc), getFilmsName(doc), getDescription(doc), getYear(doc), getCountry(doc), getType(doc),
+                    getQuality(doc), getTranslation(doc), getContinuance(doc), getDate(doc));
+            filmList.forEach(System.out::println);
+        }
     }
 
     private static List<String> getFilmsName(Document document) {
@@ -144,9 +149,9 @@ public class ParseKinogo {
         return linkList;
     }
 
-    private static List<Film> showListOfFilms(List<String> links, List<String> filmesNames, List<String> descriptions, List<String> years,
-                                              List<List<String>> countries, List<List<String>> types, List<String> qualities, List<String> translations,
-                                              List<String> continuances, List<String> dates) {
+    private static List<Film> getListOfFilms(List<String> links, List<String> filmesNames, List<String> descriptions, List<String> years,
+                                            List<List<String>> countries, List<List<String>> types, List<String> qualities, List<String> translations,
+                                            List<String> continuances, List<String> dates) {
         int numberOfFilms = filmesNames.size();
         List<Film> filmList = new ArrayList<>();
         for (int i = 0; i < numberOfFilms; i++) {
@@ -155,13 +160,8 @@ public class ParseKinogo {
             film.setName(filmesNames.get(i));
             film.setDescription(descriptions.get(i));
             film.setYear(Integer.parseInt(years.get(i)));
-            film.setCountry(countries.get(i).get(i));/*
-            Exception in thread "main" java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
-	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
-	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
-	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
-            */
-            film.setType(types.get(i).get(i));
+            film.setCountry(countries.get(i));
+            film.setType(types.get(i));
             film.setQuality(qualities.get(i));
             film.setTranslation(translations.get(i));
             film.setContinuance(continuances.get(i));
