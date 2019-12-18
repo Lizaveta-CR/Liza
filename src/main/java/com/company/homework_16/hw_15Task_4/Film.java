@@ -5,12 +5,30 @@ import java.util.Date;
 // +
 public class Film {
     private int year;
+    private String link;
+    private String name;
     private String country;
     private String type;
     private String quality;
     private String translation;
     private String continuance;
     private Date date;
+
+    private String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getYear() {
         return year;
@@ -72,6 +90,8 @@ public class Film {
     public String toString() {
         return "Film{" +
                 "year=" + year +
+                ", link='" + link + '\'' +
+                ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", type='" + type + '\'' +
                 ", quality='" + quality + '\'' +

@@ -8,8 +8,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 public class ParseKinogo {
@@ -19,36 +17,7 @@ public class ParseKinogo {
                 .userAgent("Safari")
                 .get();
 
-        System.out.println("Links");
-        List<String> link = getLink(doc);
-        link.forEach(System.out::println);
-        System.out.println("Film");
-        List<String> names = getFilmsName(doc);
-        names.forEach(System.out::println);
-        System.out.println("Year");
-        List<String> year = getYear(doc);
-        year.forEach(System.out::println);
-        System.out.println("Country");
-        List<List<String>> country = getCountry(doc);
-        country.forEach(System.out::println);
-        System.out.println("Type");
-        List<List<String>> type = getType(doc);
-        type.forEach(System.out::println);
-        System.out.println("Quality");
-        List<String> quality = getQuality(doc);
-        quality.forEach(System.out::println);
-        System.out.println("Continuance");
-        List<String> continuance = getContinuance(doc);
-        continuance.forEach(System.out::println);
-        System.out.println("translation");
-        List<String> translation = getTranslation(doc);
-        translation.forEach(System.out::println);
-        System.out.println("date");
-        List<String> date = getDate(doc);
-        date.forEach(System.out::println);
-        System.out.println("Description");
-        List<String> description = getDescription(doc);
-        description.forEach(System.out::println);
+        checkParse(doc);
     }
 
     private static List<String> getFilmsName(Document document) {
@@ -169,5 +138,38 @@ public class ParseKinogo {
             linkList.add(zagol.select("a").attr("href"));
         }
         return linkList;
+    }
+
+    private static void checkParse(Document doc) {
+        System.out.println("Links");
+        List<String> link = getLink(doc);
+        link.forEach(System.out::println);
+        System.out.println("Film");
+        List<String> names = getFilmsName(doc);
+        names.forEach(System.out::println);
+        System.out.println("Year");
+        List<String> year = getYear(doc);
+        year.forEach(System.out::println);
+        System.out.println("Country");
+        List<List<String>> country = getCountry(doc);
+        country.forEach(System.out::println);
+        System.out.println("Type");
+        List<List<String>> type = getType(doc);
+        type.forEach(System.out::println);
+        System.out.println("Quality");
+        List<String> quality = getQuality(doc);
+        quality.forEach(System.out::println);
+        System.out.println("Continuance");
+        List<String> continuance = getContinuance(doc);
+        continuance.forEach(System.out::println);
+        System.out.println("translation");
+        List<String> translation = getTranslation(doc);
+        translation.forEach(System.out::println);
+        System.out.println("date");
+        List<String> date = getDate(doc);
+        date.forEach(System.out::println);
+        System.out.println("Description");
+        List<String> description = getDescription(doc);
+        description.forEach(System.out::println);
     }
 }
