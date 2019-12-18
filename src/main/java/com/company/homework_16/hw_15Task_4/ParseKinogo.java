@@ -1,6 +1,5 @@
 package com.company.homework_16.hw_15Task_4;
 
-import com.company.homework_15.entity.Film;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,7 +25,7 @@ public class ParseKinogo {
 //        year.forEach(System.out::println);
 //        List<String> country = getCountry(doc);
 //        country.forEach(System.out::println);
-        List<String> type = getType(doc);
+        List<List<String>> type = getType(doc);
         type.forEach(System.out::println);
 //        List<String> quality = getQuality(doc);
 //        quality.forEach(System.out::println);
@@ -36,17 +35,27 @@ public class ParseKinogo {
 //        translation.forEach(System.out::println);
 //        List<String> date = getDate(doc);
 //        date.forEach(System.out::println);
-        List<String> years = getDescription(doc);
-        years.forEach(System.out::println);
+//        List<String> description = getDescription(doc);
+//        description.forEach(System.out::println);
     }
 
     private static List<String> getFilmsName(Document document) {
+        String stringRegexNumber = "\\([^()]*\\)";
         List<String> filmsNames = new ArrayList<>();
         Elements filmTitles = document.select("h2");
         for (Element title : filmTitles) {
-            String textWithoutYear = title.text().replaceAll("\\([^()]*\\)", "");//это для того,чтобы убирало год в скобках
-            //но что,если в самом названии будут скобки? Как мне избежать этот случай?
-            filmsNames.add(textWithoutYear);
+            String[] strings = title.text().split(" ");
+            for (String splittedString : strings) {
+                if (splittedString.matches(stringRegexNumber)) {
+                    int titleNumberLength = splittedString.length();
+                    if (titleNumberLength >=4 & titleNumberLength <= 6) {
+                        String replace = title.text().replace(splittedString, "");
+                        filmsNames.add(replace);
+                    } else {
+                        filmsNames.add(title.text());
+                    }
+                }
+            }
         }
         return filmsNames;
     }
@@ -69,19 +78,22 @@ public class ParseKinogo {
         return countryList;
     }
 
-    private static List<String> getType(Document document) {
+    private static List<List<String>> getType(Document document) {
+
         List<String> typeList = new ArrayList<>();
+        List<List<String>> totalList = new ArrayList<>();
         Elements types = document.select("b:contains(Жанр:)");
+
         for (Element type : types) {
-            Element firstElement = type.firstElementSibling();
-            Element nextElement = firstElement.nextElementSibling();//в одной строке может располагаться нес-ко жанров,
-            //поэтому это !-ое,что я придумала,но не понимаю,почему нет результата
-            while (!nextElement.text().equals("")) {
-                typeList.add(nextElement.text());
-                nextElement = nextElement.nextElementSibling();
+            Element currentElement = type.nextElementSibling();
+            do {
+                typeList.add(currentElement.text());
+                currentElement = currentElement.nextElementSibling();
             }
+            while (!currentElement.text().equals("Качество:") || currentElement.text().isEmpty());
         }
-        return typeList;
+        totalList.add(typeList);
+        return totalList;
     }
 
     private static List<String> getQuality(Document document) {
