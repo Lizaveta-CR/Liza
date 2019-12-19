@@ -17,8 +17,8 @@ public class ParseKinogo {
     public static void main(String[] args) throws IOException {
         String URL = "https://kinogo.by/page/";
         int numberOfPagesToParse = 4;//ошибка film.setDate(dates.get(i)) в методе getistOfFilms
-        //и тут я столкнулась с проблемой:у какого-то фильма может чего-то не быть
-        for (int i = 1; i <= numberOfPagesToParse; i++) {
+        //хотя поле "Премьера" в этом фильме есть,и по Debug все приходит,но не добавляется
+        for (int i = 4; i <= numberOfPagesToParse; i++) {
             String newURL = URL.concat(String.valueOf(i));
             Document doc = Jsoup.connect(newURL)
                     .userAgent("Safari")
@@ -126,7 +126,12 @@ public class ParseKinogo {
         List<String> dateList = new ArrayList<>();
         Elements dates = document.select("b:contains(Премьера:)");
         for (Element date : dates) {
-            dateList.add(date.nextSibling().toString());
+            Node currentElement = date.nextSibling();
+            if (currentElement.toString().isEmpty()) {
+                dateList.add("null");
+            } else {
+                dateList.add(date.nextSibling().toString());
+            }
         }
         return dateList;
     }
@@ -150,8 +155,8 @@ public class ParseKinogo {
     }
 
     private static List<Film> getListOfFilms(List<String> links, List<String> filmesNames, List<String> descriptions, List<String> years,
-                                            List<List<String>> countries, List<List<String>> types, List<String> qualities, List<String> translations,
-                                            List<String> continuances, List<String> dates) {
+                                             List<List<String>> countries, List<List<String>> types, List<String> qualities, List<String> translations,
+                                             List<String> continuances, List<String> dates) {
         int numberOfFilms = filmesNames.size();
         List<Film> filmList = new ArrayList<>();
         for (int i = 0; i < numberOfFilms; i++) {
