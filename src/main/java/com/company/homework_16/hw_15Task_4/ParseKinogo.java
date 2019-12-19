@@ -128,7 +128,7 @@ public class ParseKinogo {
         for (Element date : dates) {
             Node currentElement = date.nextSibling();
             if (currentElement.toString().isEmpty()) {
-                dateList.add("null");
+                dateList.add("null");//для проверки
             } else {
                 dateList.add(date.nextSibling().toString());
             }
