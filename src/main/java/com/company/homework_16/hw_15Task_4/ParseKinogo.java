@@ -7,205 +7,196 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ParseKinogo {
 
     public static void main(String[] args) throws IOException {
         String URL = "https://kinogo.by/page/";
-        int numberOfPagesToParse = 4;//ошибка film.setDate(dates.get(i)) в методе getistOfFilms
-        //хотя поле "Премьера" в этом фильме есть,и по Debug все приходит,но не добавляется
-        for (int i = 4; i <= numberOfPagesToParse; i++) {
+//аналогичная ошибка
+        int numberOfPagesToParse = 5;
+        for (int i = 1; i <= numberOfPagesToParse; i++) {
             String newURL = URL.concat(String.valueOf(i));
             Document doc = Jsoup.connect(newURL)
                     .userAgent("Safari")
                     .get();
-            List<Film> filmList = getListOfFilms(getLink(doc), getFilmsName(doc), getDescription(doc), getYear(doc), getCountry(doc), getType(doc),
-                    getQuality(doc), getTranslation(doc), getContinuance(doc), getDate(doc));
-            filmList.forEach(System.out::println);
+            Elements content = getFilmContent(doc);
+            for (Element element : content) {
+                System.out.println(getFilm(element));
+            }
         }
     }
 
-    private static List<String> getFilmsName(Document document) {
+    private static Elements getFilmContent(Document document) {
+        Elements shortimg = document.getElementsByClass("shortimg");
+        return shortimg;
+    }
+
+    private static Film getFilm(Element type) {
+        Film film = new Film();
+        String filmName = getFilmName(type);
+        String year = getYear(type);
+        List<String> country = getCountry(type);
+        List<String> filmType = getType(type);
+        String quality = getQuality(type);
+        String translation = getTranslation(type);
+        String continuance = getContinuance(type);
+        String date = getDate(type);
+        String link = getLink(type);
+        String description = getDescription(type);
+        film.setName(filmName);
+        film.setYear(year);
+        film.setCountry(country);
+        film.setType(filmType);
+        film.setQuality(quality);
+        film.setTranslation(translation);
+        film.setContinuance(continuance);
+        film.setDate(date);
+        film.setLink(link);
+        film.setDescription(description);
+        return film;
+    }
+
+    private static String getFilmName(Element filmName) {
         String stringRegexNumber = "\\([^()]*\\)";
-        List<String> filmsNames = new ArrayList<>();
-        Elements filmTitles = document.select("h2");
-        for (Element title : filmTitles) {
-            String[] strings = title.text().split(" ");
+        Elements ariaLabel = filmName.getElementsByAttribute("aria-label");
+        String filmTitle = ariaLabel.attr("aria-label");
+        if (!filmTitle.isEmpty()) {
+            String[] strings = filmTitle.split(" ");
             for (String splittedString : strings) {
                 if (splittedString.matches(stringRegexNumber)) {
                     int titleNumberLength = splittedString.length();
                     if (titleNumberLength >= 4 & titleNumberLength <= 6) {
-                        String replace = title.text().replace(splittedString, "");
-                        filmsNames.add(replace);
-                    } else {
-                        filmsNames.add(title.text());
+                        filmTitle = filmTitle.replace(splittedString, "");
                     }
                 }
             }
         }
-        return filmsNames;
+        return filmTitle;
     }
 
-    private static List<String> getYear(Document document) {
-        List<String> yearsList = new ArrayList<>();
-        Elements years = document.select("b:contains(Год выпуска:)");
-        for (Element year : years) {
-            yearsList.add(year.nextElementSibling().text());
+    private static String getYear(Element type) {
+        Elements year = type.select("b:contains(Год выпуска:)");
+        String yearText = year.next().text();
+        if (yearText.isEmpty()) {
+            return "No information";
         }
-        return yearsList;
+        return yearText;
     }
 
-    private static List<List<String>> getCountry(Document document) {
-        List<List<String>> countryList = new ArrayList<>();
-        Elements countries = document.select("b:contains(Страна:)");
-        for (Element country : countries) {
+    private static List<String> getCountry(Element type) {
+        List<String> countryList = new ArrayList<>();
+        Element country = type.select("b:contains(Страна:)").first();
+        if (!country.text().isEmpty()) {
             Node currentElement = country.nextSibling();
-            List<String> typeListForOneCountry = new ArrayList<>();
             do {
                 if (!currentElement.toString().isEmpty()) {
-                    typeListForOneCountry.add(currentElement.toString().trim());
+                    countryList.add(currentElement.toString().trim());
                 }
                 currentElement = currentElement.nextSibling();
             }
             while (!currentElement.toString().equals("<br>"));
-            countryList.add(typeListForOneCountry);
+        } else {
+            countryList.add("No information");
         }
         return countryList;
     }
 
-    private static List<List<String>> getType(Document document) {
-        List<List<String>> totalList = new ArrayList<>();
-        Elements types = document.select("b:contains(Жанр:)");
-        for (Element type : types) {
-            Element currentElement = type.nextElementSibling();
-            List<String> typeListForOneFilm = new ArrayList<>();
+    private static List<String> getType(Element type) {
+        List<String> typeList = new ArrayList<>();
+        Element types = type.select("b:contains(Жанр:)").first();
+
+        if (!types.text().isEmpty()) {
+            Element currentElement = types.nextElementSibling();
             do {
                 if (!currentElement.text().isEmpty()) {
-                    typeListForOneFilm.add(currentElement.text());
+                    typeList.add(currentElement.text());
                 }
                 currentElement = currentElement.nextElementSibling();
             }
             while (!currentElement.text().equals("Качество:"));
-            totalList.add(typeListForOneFilm);
+        } else {
+            typeList.add("No information");
         }
-        return totalList;
+        return typeList;
     }
 
-    private static List<String> getQuality(Document document) {
-        List<String> qualityList = new ArrayList<>();
-        Elements qualities = document.select("b:contains(Качество:)");
-        for (Element quality : qualities) {
-            qualityList.add(quality.nextSibling().toString());
+    private static String getQuality(Element type) {
+        Element quality = type.select("b:contains(Качество:)").first();
+        Node nodeNextElement = quality.nextSibling();
+        if (nodeNextElement.toString().isEmpty()) {
+            return "No information";
         }
-        return qualityList;
+        return nodeNextElement.toString().trim();
     }
 
-    private static List<String> getTranslation(Document document) {
-        List<String> translationList = new ArrayList<>();
-        Elements translations = document.select("b:contains(Перевод:)");
-        for (Element translation : translations) {
-            translationList.add(translation.nextSibling().toString());
+    private static String getTranslation(Element type) {
+        Element translation = type.select("b:contains(Перевод:)").first();
+        Node nodeNextElement = translation.nextSibling();
+        if (nodeNextElement.toString().isEmpty()) {
+            return "No information";
         }
-        return translationList;
+        return nodeNextElement.toString().trim();
     }
 
-    private static List<String> getContinuance(Document document) {
-        List<String> continuanceList = new ArrayList<>();
-        Elements selectConts = document.select("b:contains(Продолжительность:)");
-        for (Element selectCont : selectConts) {
-            continuanceList.add(selectCont.nextSibling().toString());
+    private static String getContinuance(Element type) {
+        Element continuance = type.select("b:contains(Продолжительность:)").first();
+        Node nodeNextElement = continuance.nextSibling();
+        if (nodeNextElement.toString().isEmpty()) {
+            return "No information";
         }
-        return continuanceList;
+        return nodeNextElement.toString().trim();
     }
 
-    private static List<String> getDate(Document document) {
-        List<String> dateList = new ArrayList<>();
-        Elements dates = document.select("b:contains(Премьера:)");
-        for (Element date : dates) {
-            Node currentElement = date.nextSibling();
-            if (currentElement.toString().isEmpty()) {
-                dateList.add(null);//для проверки
-            } else {
-                dateList.add(date.nextSibling().toString());
-            }
+    private static String getDate(Element type) {
+        Element continuance = type.select("b:contains(Премьера:)").first();
+        Node nodeNextElement = continuance.nextSibling();
+        if (nodeNextElement.toString().isEmpty()) {
+            return "No information";
         }
-        return dateList;
+        return nodeNextElement.toString().trim();
     }
 
-    private static List<String> getDescription(Document doc) {
-        List<String> descrList = new ArrayList<>();
-        Elements descriptions = doc.select(".shortimg");
-        for (Element descrip : descriptions) {
-            descrList.add(descrip.select("div").text().replace("Лицензия", "").trim());
+    private static String getDescription(Element type) {
+        Element descriptions = type.select(".shortimg").first();
+        String replacedDescr = descriptions.text().replace("Лицензия", "").trim();
+        if (descriptions.text().isEmpty()) {
+            return "No information";
         }
-        return descrList;
+        return replacedDescr;
     }
 
-    private static List<String> getLink(Document doc) {
-        List<String> linkList = new ArrayList<>();
-        Elements zagolovki = doc.select("h2.zagolovki");
-        for (Element zagol : zagolovki) {
-            linkList.add(zagol.select("a").attr("href"));
+    private static String getLink(Element type) {
+        Elements ariaLabel = type.getElementsByAttribute("aria-label");
+        String link = ariaLabel.attr("href");
+        if (link.isEmpty()) {
+            return "No information";
         }
-        return linkList;
+        return link;
     }
 
-    private static List<Film> getListOfFilms(List<String> links, List<String> filmesNames, List<String> descriptions, List<String> years,
-                                             List<List<String>> countries, List<List<String>> types, List<String> qualities, List<String> translations,
-                                             List<String> continuances, List<String> dates) {
-        int numberOfFilms = filmesNames.size();
-        List<Film> filmList = new ArrayList<>();
-        for (int i = 0; i < numberOfFilms; i++) {
-            Film film = new Film();
-            film.setLink(links.get(i));
-            film.setName(filmesNames.get(i));
-            film.setDescription(descriptions.get(i));
-            film.setYear(Integer.parseInt(years.get(i)));
-            film.setCountry(countries.get(i));
-            film.setType(types.get(i));
-            film.setQuality(qualities.get(i));
-            film.setTranslation(translations.get(i));
-            film.setContinuance(continuances.get(i));
-            film.setDate(dates.get(i));
-            filmList.add(film);
-        }
-        return filmList;
-    }
-
-    private static void showParse(Document doc) {
-        System.out.println("Links");
-        List<String> link = getLink(doc);
-        link.forEach(System.out::println);
-        System.out.println("Film");
-        List<String> names = getFilmsName(doc);
-        names.forEach(System.out::println);
-        System.out.println("Year");
-        List<String> year = getYear(doc);
-        year.forEach(System.out::println);
-        System.out.println("Country");
-        List<List<String>> country = getCountry(doc);
-        country.forEach(System.out::println);
-        System.out.println("Type");
-        List<List<String>> type = getType(doc);
-        type.forEach(System.out::println);
-        System.out.println("Quality");
-        List<String> quality = getQuality(doc);
-        quality.forEach(System.out::println);
-        System.out.println("Continuance");
-        List<String> continuance = getContinuance(doc);
-        continuance.forEach(System.out::println);
-        System.out.println("translation");
-        List<String> translation = getTranslation(doc);
-        translation.forEach(System.out::println);
-        System.out.println("date");
-        List<String> date = getDate(doc);
-        date.forEach(System.out::println);
-        System.out.println("Description");
-        List<String> description = getDescription(doc);
-        description.forEach(System.out::println);
-    }
+//    private static List<Film> getListOfFilms
+//            (List<String> links, List<String> filmesNames, List<String> descriptions, List<String> years,
+//             List<List<String>> countries, List<List<String>> types, List<String> qualities, List<String> translations,
+//             List<String> continuances, List<String> dates) {
+//        int numberOfFilms = filmesNames.size();
+//        List<Film> filmList = new ArrayList<>();
+//        for (int i = 0; i < numberOfFilms; i++) {
+//            Film film = new Film();
+//            film.setLink(links.get(i));
+//            film.setName(filmesNames.get(i));
+//            film.setDescription(descriptions.get(i));
+//            film.setYear(Integer.parseInt(years.get(i)));
+//            film.setCountry(countries.get(i));
+//            film.setType(types.get(i));
+//            film.setQuality(qualities.get(i));
+//            film.setTranslation(translations.get(i));
+//            film.setContinuance(continuances.get(i));
+//            film.setDate(dates.get(i));
+//            filmList.add(film);
+//        }
+//        return filmList;
 }
+
+

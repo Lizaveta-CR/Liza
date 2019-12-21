@@ -8,7 +8,7 @@ public class Film {
     private String link;
     private String name;
     private String description;
-    private int year;
+    private String year;
     private List<String> country;
     private List<String> type;
     private String quality;
@@ -40,11 +40,11 @@ public class Film {
         this.description = description;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -102,7 +102,7 @@ public class Film {
                 "link='" + link + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", year=" + year +
+                ", year='" + year + '\'' +
                 ", country=" + country +
                 ", type=" + type +
                 ", quality='" + quality + '\'' +
