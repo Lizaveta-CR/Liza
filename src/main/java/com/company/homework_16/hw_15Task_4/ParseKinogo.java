@@ -14,9 +14,8 @@ public class ParseKinogo {
 
     public static void main(String[] args) throws IOException {
         String URL = "https://kinogo.by/page/";
-//аналогичная ошибка
-        int numberOfPagesToParse = 5;
-        for (int i = 4; i <= numberOfPagesToParse; i++) {
+        int numberOfPagesToParse = 10;
+        for (int i = 1; i <= numberOfPagesToParse; i++) {
             String newURL = URL.concat(String.valueOf(i));
             Document doc = Jsoup.connect(newURL)
                     .userAgent("Safari")
@@ -62,7 +61,7 @@ public class ParseKinogo {
         String stringRegexNumber = "\\([^()]*\\)";
         Elements ariaLabel = filmName.getElementsByAttribute("aria-label");
         String filmTitle = ariaLabel.attr("aria-label");
-        if (!filmTitle.isEmpty()) {
+        if (filmTitle != null && !filmTitle.isEmpty()) {
             String[] strings = filmTitle.split(" ");
             for (String splittedString : strings) {
                 if (splittedString.matches(stringRegexNumber)) {
@@ -72,23 +71,26 @@ public class ParseKinogo {
                     }
                 }
             }
+            return filmTitle;
+        } else {
+            return "No information";
         }
-        return filmTitle;
     }
 
     private static String getYear(Element type) {
         Elements year = type.select("b:contains(Год выпуска:)");
         String yearText = year.next().text();
-        if (yearText.isEmpty()) {
+        if (yearText != null && !yearText.isEmpty()) {
+            return yearText;
+        } else {
             return "No information";
         }
-        return yearText;
     }
 
     private static List<String> getCountry(Element type) {
         List<String> countryList = new ArrayList<>();
         Element country = type.select("b:contains(Страна:)").first();
-        if (!country.text().isEmpty()) {
+        if (country != null && !country.text().isEmpty()) {
             Node currentElement = country.nextSibling();
             do {
                 if (!currentElement.toString().isEmpty()) {
@@ -107,7 +109,7 @@ public class ParseKinogo {
         List<String> typeList = new ArrayList<>();
         Element types = type.select("b:contains(Жанр:)").first();
 
-        if (!types.text().isEmpty()) {
+        if (types != null && !types.text().isEmpty()) {
             Element currentElement = types.nextElementSibling();
             do {
                 if (!currentElement.text().isEmpty()) {
@@ -124,34 +126,38 @@ public class ParseKinogo {
 
     private static String getQuality(Element type) {
         Element quality = type.select("b:contains(Качество:)").first();
-        Node nodeNextElement = quality.nextSibling();
-        if (nodeNextElement.toString().isEmpty()) {
+        if (quality != null && !quality.text().isEmpty()) {
+            Node nodeNextElement = quality.nextSibling();
+            return nodeNextElement.toString().trim();
+        } else {
             return "No information";
         }
-        return nodeNextElement.toString().trim();
     }
 
     private static String getTranslation(Element type) {
         Element translation = type.select("b:contains(Перевод:)").first();
-        Node nodeNextElement = translation.nextSibling();
-        if (nodeNextElement.toString().isEmpty()) {
+
+        if (translation != null && !translation.toString().isEmpty()) {
+            Node nodeNextElement = translation.nextSibling();
+            return nodeNextElement.toString().trim();
+        } else {
             return "No information";
         }
-        return nodeNextElement.toString().trim();
     }
 
     private static String getContinuance(Element type) {
         Element continuance = type.select("b:contains(Продолжительность:)").first();
-        Node nodeNextElement = continuance.nextSibling();
-        if (nodeNextElement.toString().isEmpty()) {
+        if (continuance != null && !continuance.toString().isEmpty()) {
+            Node nodeNextElement = continuance.nextSibling();
+            return nodeNextElement.toString().trim();
+        } else {
             return "No information";
         }
-        return nodeNextElement.toString().trim();
     }
 
     private static String getDate(Element type) {
         Element continuance = type.select("b:contains(Премьера:)").first();
-        if (!continuance.text().isEmpty()) {
+        if (continuance != null && !continuance.text().isEmpty()) {
             Node nodeNextElement = continuance.nextSibling();
             return nodeNextElement.toString().trim();
         } else {
@@ -162,19 +168,21 @@ public class ParseKinogo {
     private static String getDescription(Element type) {
         Element descriptions = type.select(".shortimg").first();
         String replacedDescr = descriptions.text().replace("Лицензия", "").trim();
-        if (descriptions.text().isEmpty()) {
+        if (descriptions != null && !descriptions.text().isEmpty()) {
+            return replacedDescr;
+        } else {
             return "No information";
         }
-        return replacedDescr;
     }
 
     private static String getLink(Element type) {
         Elements ariaLabel = type.getElementsByAttribute("aria-label");
         String link = ariaLabel.attr("href");
-        if (link.isEmpty()) {
+        if (link != null && !link.isEmpty()) {
+            return link;
+        } else {
             return "No information";
         }
-        return link;
     }
 
 //    private static List<Film> getListOfFilms
