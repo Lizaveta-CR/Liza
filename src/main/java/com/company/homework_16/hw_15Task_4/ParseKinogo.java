@@ -16,7 +16,7 @@ public class ParseKinogo {
         String URL = "https://kinogo.by/page/";
 //аналогичная ошибка
         int numberOfPagesToParse = 5;
-        for (int i = 1; i <= numberOfPagesToParse; i++) {
+        for (int i = 4; i <= numberOfPagesToParse; i++) {
             String newURL = URL.concat(String.valueOf(i));
             Document doc = Jsoup.connect(newURL)
                     .userAgent("Safari")
@@ -151,11 +151,12 @@ public class ParseKinogo {
 
     private static String getDate(Element type) {
         Element continuance = type.select("b:contains(Премьера:)").first();
-        Node nodeNextElement = continuance.nextSibling();
-        if (nodeNextElement.toString().isEmpty()) {
+        if (!continuance.text().isEmpty()) {
+            Node nodeNextElement = continuance.nextSibling();
+            return nodeNextElement.toString().trim();
+        } else {
             return "No information";
         }
-        return nodeNextElement.toString().trim();
     }
 
     private static String getDescription(Element type) {
