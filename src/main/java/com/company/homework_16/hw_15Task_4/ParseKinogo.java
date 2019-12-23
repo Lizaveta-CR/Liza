@@ -184,28 +184,6 @@ public class ParseKinogo {
             return "No information";
         }
     }
-
-//    private static List<Film> getListOfFilms
-//            (List<String> links, List<String> filmesNames, List<String> descriptions, List<String> years,
-//             List<List<String>> countries, List<List<String>> types, List<String> qualities, List<String> translations,
-//             List<String> continuances, List<String> dates) {
-//        int numberOfFilms = filmesNames.size();
-//        List<Film> filmList = new ArrayList<>();
-//        for (int i = 0; i < numberOfFilms; i++) {
-//            Film film = new Film();
-//            film.setLink(links.get(i));
-//            film.setName(filmesNames.get(i));
-//            film.setDescription(descriptions.get(i));
-//            film.setYear(Integer.parseInt(years.get(i)));
-//            film.setCountry(countries.get(i));
-//            film.setType(types.get(i));
-//            film.setQuality(qualities.get(i));
-//            film.setTranslation(translations.get(i));
-//            film.setContinuance(continuances.get(i));
-//            film.setDate(dates.get(i));
-//            filmList.add(film);
-//        }
-//        return filmList;
 }
 
 
