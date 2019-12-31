@@ -12,48 +12,45 @@ import java.util.List;
 
 public class ParseKinogo {
 
-    public static void main(String[] args) throws IOException {
-        String URL = "https://kinogo.by/page/";
-        int numberOfPagesToParse = 10;
-        for (int i = 1; i <= numberOfPagesToParse; i++) {
-            String newURL = URL.concat(String.valueOf(i));
-            Document doc = Jsoup.connect(newURL)
-                    .userAgent("Safari")
-                    .get();
-            Elements content = getFilmContent(doc);
-            for (Element element : content) {
-                System.out.println(getFilm(element));
-            }
+    // public static void main(String[] args) throws IOException {
+    public static List<Film> parseFilms(Document document) {
+        //  String URL = "https://kinogo.by/page/";
+        List<Film> films = new ArrayList<>();
+        Elements content = getFilmContent(document);
+        for (Element element : content) {
+            films.add(getFilm(element));
         }
+        return films;
+
+//        int numberOfPagesToParse = 10;
+//        for (int i = 1; i <= numberOfPagesToParse; i++) {
+//            String newURL = URL.concat(String.valueOf(i));
+//            Document doc = Jsoup.connect(newURL)
+//                    .userAgent("Safari")
+//                    .get();
+//            Elements content = getFilmContent(doc);
+//            for (Element element : content) {
+//                System.out.println(getFilm(element));
+//            }
+//        }
     }
 
     private static Elements getFilmContent(Document document) {
-        Elements shortimg = document.getElementsByClass("shortimg");
-        return shortimg;
+        return document.getElementsByClass("shortimg");
     }
 
     private static Film getFilm(Element type) {
         Film film = new Film();
-        String filmName = getFilmName(type);
-        String year = getYear(type);
-        List<String> country = getCountry(type);
-        List<String> filmType = getType(type);
-        String quality = getQuality(type);
-        String translation = getTranslation(type);
-        String continuance = getContinuance(type);
-        String date = getDate(type);
-        String link = getLink(type);
-        String description = getDescription(type);
-        film.setName(filmName);
-        film.setYear(year);
-        film.setCountry(country);
-        film.setType(filmType);
-        film.setQuality(quality);
-        film.setTranslation(translation);
-        film.setContinuance(continuance);
-        film.setDate(date);
-        film.setLink(link);
-        film.setDescription(description);
+        film.setName(getFilmName(type));
+        film.setYear(getYear(type));
+        film.setCountry(getCountry(type));
+        film.setType(getType(type));
+        film.setQuality(getQuality(type));
+        film.setTranslation(getTranslation(type));
+        film.setContinuance(getContinuance(type));
+        film.setDate(getDate(type));
+        film.setLink(getLink(type));
+        film.setDescription(getDescription(type));
         return film;
     }
 
@@ -71,7 +68,7 @@ public class ParseKinogo {
                     }
                 }
             }
-            return filmTitle;
+            return filmTitle.trim();
         } else {
             return "No information";
         }
@@ -86,6 +83,23 @@ public class ParseKinogo {
             return "No information";
         }
     }
+
+//    private static List<String> getValueList(Element type, String pattern) {
+//        List<String> totalList = new ArrayList<>();
+//        Element element = type.select(pattern).first();
+//        if (element != null && !element.text().isEmpty()) {
+//            Node currentElement = element.nextSibling();
+//            do {
+//                if (!currentElement.toString().isEmpty()) {
+//                    totalList.add(currentElement.toString().trim());
+//                }
+//                currentElement = currentElement.nextSibling();
+//            }
+//            while (!currentElement.toString().equals("<br>"));
+//        } else {
+//            totalList.add("No information");
+//        }
+//    }
 
     private static List<String> getCountry(Element type) {
         List<String> countryList = new ArrayList<>();
@@ -145,24 +159,22 @@ public class ParseKinogo {
         }
     }
 
-    private static String getContinuance(Element type) {
-        Element continuance = type.select("b:contains(Продолжительность:)").first();
-        if (continuance != null && !continuance.toString().isEmpty()) {
-            Node nodeNextElement = continuance.nextSibling();
+    private static String getValue(Element type, String pattern) {
+        Element element = type.select(pattern).first();
+        if (element != null && !element.toString().isEmpty()) {
+            Node nodeNextElement = element.nextSibling();
             return nodeNextElement.toString().trim();
         } else {
             return "No information";
         }
     }
 
+    private static String getContinuance(Element type) {
+        return getValue(type, "b:contains(Продолжительность:)");
+    }
+
     private static String getDate(Element type) {
-        Element continuance = type.select("b:contains(Премьера:)").first();
-        if (continuance != null && !continuance.text().isEmpty()) {
-            Node nodeNextElement = continuance.nextSibling();
-            return nodeNextElement.toString().trim();
-        } else {
-            return "No information";
-        }
+        return getValue(type, "b:contains(Премьера:)");
     }
 
     private static String getDescription(Element type) {
