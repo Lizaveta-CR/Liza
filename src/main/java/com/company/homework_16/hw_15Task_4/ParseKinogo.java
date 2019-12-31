@@ -5,6 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
+import org.w3c.dom.events.Event;
+import org.w3c.dom.events.EventTarget;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,27 +14,13 @@ import java.util.List;
 
 public class ParseKinogo {
 
-    // public static void main(String[] args) throws IOException {
     public static List<Film> parseFilms(Document document) {
-        //  String URL = "https://kinogo.by/page/";
         List<Film> films = new ArrayList<>();
         Elements content = getFilmContent(document);
         for (Element element : content) {
             films.add(getFilm(element));
         }
         return films;
-
-//        int numberOfPagesToParse = 10;
-//        for (int i = 1; i <= numberOfPagesToParse; i++) {
-//            String newURL = URL.concat(String.valueOf(i));
-//            Document doc = Jsoup.connect(newURL)
-//                    .userAgent("Safari")
-//                    .get();
-//            Elements content = getFilmContent(doc);
-//            for (Element element : content) {
-//                System.out.println(getFilm(element));
-//            }
-//        }
     }
 
     private static Elements getFilmContent(Document document) {
@@ -84,21 +72,29 @@ public class ParseKinogo {
         }
     }
 
+//    private static Node getEventClass(Node element) {
+//        if (element instanceof Element) {
+//            return ((Element) element).nextElementSibling();
+//        }
+//        return element.nextSibling();
+//    }
+
 //    private static List<String> getValueList(Element type, String pattern) {
 //        List<String> totalList = new ArrayList<>();
 //        Element element = type.select(pattern).first();
 //        if (element != null && !element.text().isEmpty()) {
-//            Node currentElement = element.nextSibling();
+//            Node currentElement = getEventClass(element);
 //            do {
 //                if (!currentElement.toString().isEmpty()) {
 //                    totalList.add(currentElement.toString().trim());
 //                }
-//                currentElement = currentElement.nextSibling();
+//                getEventClass(element);
 //            }
-//            while (!currentElement.toString().equals("<br>"));
+//            while (!currentElement.toString().equals("<br>"));//??
 //        } else {
 //            totalList.add("No information");
 //        }
+//        return getValueList(...);
 //    }
 
     private static List<String> getCountry(Element type) {
