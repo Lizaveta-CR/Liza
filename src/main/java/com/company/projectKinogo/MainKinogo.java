@@ -1,4 +1,4 @@
-package com.company.homework_16.hw_15Task_4;
+package com.company.projectKinogo;
 
 import java.util.List;
 

@@ -1,14 +1,10 @@
-package com.company.homework_16.hw_15Task_4;
+package com.company.projectKinogo;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-import org.w3c.dom.events.Event;
-import org.w3c.dom.events.EventTarget;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
