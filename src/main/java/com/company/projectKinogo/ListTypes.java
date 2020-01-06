@@ -9,7 +9,7 @@ import java.util.List;
 public class ListTypes<T> {
     private String selectField;
     private String endField;
-    // private T element;
+     private T element;
 
     public ListTypes(String selectField, String endField) {
         this.selectField = selectField;
