@@ -28,7 +28,7 @@ public class ParseKinogo {
         film.setName(getFilmName(type));
         film.setYear(getYear(type));
         film.setCountry(getCountry(type));
-        film.setType(getType(type));
+        film.setType(getGenre(type));
         film.setQuality(getQuality(type));
         film.setTranslation(getTranslation(type));
         film.setContinuance(getContinuance(type));
@@ -68,65 +68,16 @@ public class ParseKinogo {
         }
     }
 
-//    private static Node getEventClass(Node element) {
-//        if (element instanceof Element) {
-//            return ((Element) element).nextElementSibling();
-//        }
-//        return element.nextSibling();
-//    }
-
-//    private static List<String> getValueList(Element type, String pattern) {
-//        List<String> totalList = new ArrayList<>();
-//        Element element = type.select(pattern).first();
-//        if (element != null && !element.text().isEmpty()) {
-//            Node currentElement = getEventClass(element);
-//            do {
-//                if (!currentElement.toString().isEmpty()) {
-//                    totalList.add(currentElement.toString().trim());
-//                }
-//                getEventClass(element);
-//            }
-//            while (!currentElement.toString().equals("<br>"));//??
-//        } else {
-//            totalList.add("No information");
-//        }
-//        return getValueList(...);
-//    }
-
     private static List<String> getCountry(Element type) {
-        List<String> countryList = new ArrayList<>();
-        Element country = type.select("b:contains(Страна:)").first();
-        if (country != null && !country.text().isEmpty()) {
-            Node currentElement = country.nextSibling();
-            do {
-                if (!currentElement.toString().isEmpty()) {
-                    countryList.add(currentElement.toString().trim());
-                }
-                currentElement = currentElement.nextSibling();
-            }
-            while (!currentElement.toString().equals("<br>"));
-        } else {
-            countryList.add("No information");
-        }
-        return countryList;
+        ListTypes<Node> country = new ListTypes<>("b:contains(Страна:)", "<br>");
+        List<String> types = country.getTypes(type);
+        return types;
     }
 
-    private static List<String> getType(Element type) {
-        List<String> typeList = new ArrayList<>();
-        Element types = type.select("b:contains(Жанр:)").first();
-        if (types != null && !types.text().isEmpty()) {
-            Element currentElement = types.nextElementSibling();
-            do {
-                if (!currentElement.text().isEmpty()) {
-                    typeList.add(currentElement.text());
-                }
-                currentElement = currentElement.nextElementSibling();
-            }
-            while (!currentElement.text().equals("Качество:"));
-        } else {
-            typeList.add("No information");
-        }
-        return typeList;
+    private static List<String> getGenre(Element type) {
+        ListTypes<Element> genre = new ListTypes<>("b:contains(Жанр:)", "Качество:");
+        List<String> types = genre.getTypes(type);
+        return types;
     }
 
     private static String getValue(Element type, String pattern) {
