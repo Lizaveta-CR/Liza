@@ -69,13 +69,13 @@ public class ParseKinogo {
     }
 
     private static List<String> getCountry(Element type) {
-        ListTypes<Node> country = new ListTypes<>("b:contains(Страна:)", "<br>");
+        ListTypes<Node> country = new ListTypes<>("b:contains(Страна:)", "<br>", Node.class);
         List<String> types = country.getTypes(type);
         return types;
     }
 
     private static List<String> getGenre(Element type) {
-        ListTypes<Element> genre = new ListTypes<>("b:contains(Жанр:)", "Качество:");
+        ListTypes<Element> genre = new ListTypes<>("b:contains(Жанр:)", "Качество:", Element.class);
         List<String> types = genre.getTypes(type);
         return types;
     }

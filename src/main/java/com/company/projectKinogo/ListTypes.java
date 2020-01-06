@@ -9,16 +9,13 @@ import java.util.List;
 public class ListTypes<T> {
     private String selectField;
     private String endField;
-     private T element;
+    private Class<T> typeClass;
 
-    public ListTypes(String selectField, String endField) {
+    public ListTypes(String selectField, String endField, Class<T> typeClass) {
         this.selectField = selectField;
         this.endField = endField;
+        this.typeClass = typeClass;
     }
-
-//    public ListTypes(T element) {
-//        this.element = element;
-//    }
 
     public String getSelectField() {
         return selectField;
@@ -36,19 +33,19 @@ public class ListTypes<T> {
         this.endField = endField;
     }
 
-//    public T getElement() {
-//        return element;
-//    }
-//
-//    public void setElement(T element) {
-//        this.element = element;
-//    }
+    public Class<T> getTypeClass() {
+        return typeClass;
+    }
+
+    public void setTypeClass(Class<T> typeClass) {
+        this.typeClass = typeClass;
+    }
 
     public List<String> getTypes(Element type) {
         List<String> typeList = new ArrayList<>();
         Element types = type.select(selectField).first();
         if (types != null && !types.text().isEmpty()) {
-            if (/* element.getClass.equals...*/) {//что бы я тут не писала,всегда выдает ошибку
+            if (typeClass.equals(Element.class)) {
                 Element currentElement = types.nextElementSibling();
                 do {
                     if (!currentElement.text().isEmpty()) {
