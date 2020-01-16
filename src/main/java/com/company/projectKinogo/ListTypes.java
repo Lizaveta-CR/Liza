@@ -45,25 +45,17 @@ public class ListTypes<T> {
         List<String> typeList = new ArrayList<>();
         Element types = type.select(selectField).first();
         if (types != null && !types.text().isEmpty()) {
-            if (typeClass.equals(Element.class)) {
-                Element currentElement = types.nextElementSibling();
-                do {
-                    if (!currentElement.text().isEmpty()) {
-                        typeList.add(currentElement.text());
-                    }
-                    currentElement = currentElement.nextElementSibling();
+            boolean isElement = typeClass.equals(Element.class);
+            Node currentElement = isElement ? (Element) types.nextElementSibling() : types.nextSibling();
+            String currentElementValue = isElement ? ((Element) currentElement).text() : currentElement.toString();
+            do {
+                if (!currentElementValue.isEmpty()) {
+                    typeList.add(currentElementValue.trim());
                 }
-                while (!currentElement.text().equals(endField));
-            } else {
-                Node currentElement = types.nextSibling();
-                do {
-                    if (!currentElement.toString().isEmpty()) {
-                        typeList.add(currentElement.toString().trim());
-                    }
-                    currentElement = currentElement.nextSibling();
-                }
-                while (!currentElement.toString().equals(endField));
+                currentElement = isElement ? ((Element) currentElement).nextElementSibling() : currentElement.nextSibling();
+                currentElementValue = isElement ? ((Element) currentElement).text() : currentElement.toString();
             }
+            while (!currentElementValue.equals(endField));
         } else {
             typeList.add("No information");
         }
